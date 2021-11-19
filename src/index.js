@@ -1,12 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+import AuthContextProvider, { AuthContext } from './Contexts/AuthContext';
+import { DataProvider } from './Contexts/DataContext';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+        <AuthContextProvider>
+          <DataProvider>
+            <App />
+          </DataProvider>
+        </AuthContextProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
