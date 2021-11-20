@@ -1,5 +1,5 @@
 import React from 'react';
-import { signInWithPopup } from "firebase/auth";
+import { signInWithPopup, signOut  } from "firebase/auth";
 import { auth, provider } from '../Helper/FirebaseConfig';
 
 export const AuthContext = React.createContext();
@@ -17,7 +17,7 @@ export default function AuthContextProvider({children}){
     }, []);
 
     React.useEffect(() =>{
-        // console.log("U: ", user);
+        console.log("U: ", user);
     }, [user]);
 
     function login(){
@@ -30,8 +30,20 @@ export default function AuthContextProvider({children}){
         });
     }
 
+    function logout(){
+        signOut(auth)
+        .then(() => {
+            console.log("Logout");
+            document.location.reload(true);
+
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    }
+
     return (
-        <AuthContext.Provider value={{ user, setUser, login}}>
+        <AuthContext.Provider value={{ user, setUser, login, logout}}>
             {children}
         </AuthContext.Provider>
     )
