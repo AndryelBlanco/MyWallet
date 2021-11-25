@@ -1,17 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import AuthContextProvider, { AuthContext } from './Contexts/AuthContext';
 import { DataProvider } from './Contexts/DataContext';
+import AuthContextProvider from './Contexts/AuthContext';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
-
+import './global.css';
+import { FirebaseProvider } from './Contexts/FIrebaseContext';
 
 ReactDOM.render(
   <React.StrictMode>
         <AuthContextProvider>
-          <DataProvider>
-            <App />
-          </DataProvider>
+          {/* <DataProvider> */}
+            <FirebaseProvider>
+              <App />
+            </FirebaseProvider>
+          {/* </DataProvider> */}
+
         </AuthContextProvider>
   </React.StrictMode>,
   document.getElementById('root')

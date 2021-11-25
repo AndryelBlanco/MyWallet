@@ -17,12 +17,12 @@ export const Container = styled.div`
 `;
 
 export const ItemTitle = styled.h1`
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: bold;
     color: #00131A;
 `;
 
 export const ItemAmmount = styled.span`
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: ${props => (props.ammount >= 0 ? '#42DB29' : "#FF3333")};
 `;

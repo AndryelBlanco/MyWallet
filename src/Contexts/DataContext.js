@@ -14,7 +14,10 @@ export const DataProvider = ({children}) => {
     const [cashIn, setCashIn] = React.useState(null);
     const [cashOut, setCashOut] = React.useState(null);
     const [transactionHistory, setTransactionHistory] = React.useState([]);
-    // const [cashOut, setCashOut] = React.useState(null);
+   
+    const [transactionTitle, setTransactionTitle] = React.useState('');
+    const [transactionDate, setTransactionDate] = React.useState('');
+    const [transactionAmmount, setTransactionAmmount] = React.useState('');
 
     React.useEffect(() => {
         if(user){
@@ -25,12 +28,13 @@ export const DataProvider = ({children}) => {
     React.useEffect(() =>{
         if(storedData){
             saveTransactionData();
-        }
+        } 
     }, [totalBalance]);
     
         
         async function saveTransactionData(){
             const docRef = collection(database, "Transactions");
+            console.log("Novo:", totalBalance, cashIn, cashOut, transactionHistory );
             await setDoc(doc(docRef, user.uid),{
                 balance: totalBalance,
                 cashIn: cashIn,
@@ -72,7 +76,7 @@ export const DataProvider = ({children}) => {
 
 
     return(
-        <DataContext.Provider value={{ saveTransactionData, getTransactionData, totalBalance, cashIn, cashOut, setTotalBalance, setCashOut, setCashIn, transactionHistory, setTransactionHistory }}>
+        <DataContext.Provider value={{ saveTransactionData, getTransactionData, totalBalance, cashIn, cashOut, setTotalBalance, setCashOut, setCashIn, transactionHistory, setTransactionHistory, setTransactionTitle, setTransactionAmmount, setTransactionDate }}>
             {children}
         </DataContext.Provider>
     )
