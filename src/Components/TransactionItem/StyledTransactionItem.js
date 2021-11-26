@@ -1,11 +1,12 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    display: flex;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: flex-end;
     justify-content: space-between;
 
-    width: 35rem;
+    width: 38rem;
 
     padding: 1rem;
     margin-bottom: 1rem;
@@ -20,9 +21,22 @@ export const ItemTitle = styled.h1`
     font-size: 1rem;
     font-weight: bold;
     color: #00131A;
+    
+    max-width: 10rem;
+`;
+
+export const ItemDate = styled.span`
+    font-size: 1rem;
+    font-weight: 500;
+    color: #949C9F;
+
+    text-align: center;
 `;
 
 export const ItemAmmount = styled.span`
     font-size: 1rem;
+    font-weight: 600;
     color: ${props => (props.ammount >= 0 ? '#42DB29' : "#FF3333")};
+
+    text-align: right;
 `;

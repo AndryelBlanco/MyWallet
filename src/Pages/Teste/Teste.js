@@ -1,97 +1,94 @@
-import React from 'react';
-import { FirebaseContext } from '../../Contexts/FIrebaseContext';
+// import React from 'react';
+// import { FirebaseContext } from '../../Contexts/FIrebaseContext';
 
-const Teste = () => {
-    const { setNewValues, save, totalBalance, oldValues } = React.useContext(FirebaseContext);
-    const [transactionAmmount, setTransactionAmmount] = React.useState('');
-    const [transactionTitle, setTransactionTitle] = React.useState('');
-    const [transactionDate, setTransactionDate] = React.useState('');
+// import { PageHome } from '../Home/StyledHomePage';
+// import TransactionItem from '../../Components/TransactionItem/TransactionItem'; 
+// import Modal from '../../Components/Modal/Modal';
+
+
+// const Teste = () => {
+//     const { setNewValues, save, totalBalance, oldValues, loading } = React.useContext(FirebaseContext);
+//     const [transactionAmmount, setTransactionAmmount] = React.useState('');
+//     const [transactionTitle, setTransactionTitle] = React.useState('');
+//     const [transactionDate, setTransactionDate] = React.useState('');
+//     const [isModalVisible, setIsModalVisible] = React.useState(false);   
+
+//     console.log(oldValues);
+
+//     React.useEffect(() => {
+//         if(transactionAmmount < 0){
+//             setNewValues({newCashIn: 0, newCashOut: transactionAmmount, newHistory: {
+//                 title: transactionTitle,
+//                 ammount: transactionAmmount,
+//                 date: transactionDate,
+//             }});
+//         }else{
+//             setNewValues({newCashIn: transactionAmmount, newCashOut: 0, newHistory: {
+//                 title: transactionTitle,
+//                 ammount: transactionAmmount,
+//                 date: transactionDate,
+//             }});
+//         }
+
+//     }, [transactionAmmount, transactionTitle, transactionDate]);
     
-    console.log(oldValues);
-
-    React.useEffect(() => {
-        if(transactionAmmount < 0){
-            setNewValues({newCashIn: 0, newCashOut: transactionAmmount, newHistory: {
-                title: transactionTitle,
-                ammount: transactionAmmount,
-                date: transactionDate,
-            }});
-        }else{
-            setNewValues({newCashIn: transactionAmmount, newCashOut: 0, newHistory: {
-                title: transactionTitle,
-                ammount: transactionAmmount,
-                date: transactionDate,
-            }});
-        }
-
-    }, [transactionAmmount, transactionTitle, transactionDate]);
-    
-    function handleChange({target}) {
-        switch(target.id){
-            case 'title':
-                setTransactionTitle(target.value);
-                break;
-            case 'date':
-                setTransactionDate(target.value);
-                break;
-            case 'ammount':
-                if(target.value === ''){
-                    setTransactionAmmount('');
-                }else{
-                    convertValue(target.value);
-                }
-                break;
-            default: break;
-        }
+//     function handleChange({target}) {
+//         switch(target.id){
+//             case 'title':
+//                 setTransactionTitle(target.value);
+//                 break;
+//             case 'date':
+//                 setTransactionDate(target.value);
+//                 break;
+//             case 'ammount':
+//                 if(target.value === ''){
+//                     setTransactionAmmount('');
+//                 }else{
+//                     convertValue(target.value);
+//                 }
+//                 break;
+//             default: break;
+//         }
        
-    }
+//     }
 
-    function convertValue(value){
-        const newValue = parseFloat(value);
-        if(newValue){
-            console.log("C: ",newValue);
-            setTransactionAmmount(newValue);
-        }
-    }
+//     function convertValue(value){
+//         const newValue = parseFloat(value);
+//         if(newValue){
+//             console.log("C: ",newValue);
+//             setTransactionAmmount(newValue);
+//         }
+//     }
 
-    function handleSubmit(e) {
-        e.preventDefault();
-        save();
-        setTransactionAmmount('');
-        setTransactionTitle('');
-        setTransactionDate('');
-    }
+//     function handleSubmit(e) {
+//         e.preventDefault();
+//         save();
+//         setTransactionAmmount('');
+//         setTransactionTitle('');
+//         setTransactionDate('');
+//     }
 
-    return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <input
-                    type='text'
-                    value={transactionTitle}
-                    onChange={handleChange}
-                    placeholder='title'
-                    id='title'
-                />
-                <input
-                    value={transactionAmmount}
-                    onChange={handleChange}
-                    placeholder='ammount'
-                    id='ammount'
-                    type='number'
-                />
-                <input
-                    type='date'
-                    value={transactionDate}
-                    onChange={handleChange}
-                    placeholder='date'
-                    id='date'
-                />
+//     return (
+//         <PageHome>
+//             {loading ? <h1>Carregando...</h1> :
+//                 <>
+//                     {isModalVisible ? <Modal onClickFunction={() => setIsModalVisible(!isModalVisible)}/> : null}
+//                     <button onClick={() => setIsModalVisible(!isModalVisible)}>Abir Modal</button>
+//                     <h1>Balance: {totalBalance}</h1>
 
-                <button>Enviar</button>
-            </form>
-            <h1>Balance: {totalBalance}</h1>
-        </div>
-    )
-}
+//                     {oldValues!== null &&
+//                             <ul>
+//                                 {
+//                                     oldValues.oldHistory.map(tObj => (
+//                                         <TransactionItem key={Math.random()} title={tObj.title} ammount={tObj.ammount} date={tObj.date}/>
+//                                     ))
+//                                 }
+//                             </ul> 
+//                     }
+//                 </> 
+//             }
+//         </PageHome>
+//     )
+// }
 
-export default Teste
+// export default Teste

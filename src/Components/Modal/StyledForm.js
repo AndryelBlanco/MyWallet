@@ -9,6 +9,7 @@ export const ModalBackdrop = styled.div`
     width: 100%;
     height: 100vh;
     position: absolute;
+    z-index: 100;
 
     background-color: rgba(0, 0, 0, .7);
 `;
@@ -23,6 +24,7 @@ export const ModalItem = styled.div`
     padding: 1rem;
     border-radius: 8px;
     
+    transition: 1s ease-in-out;
 `;
 
 export const ModalForm = styled.form`

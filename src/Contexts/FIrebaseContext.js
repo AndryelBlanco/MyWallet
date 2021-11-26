@@ -11,12 +11,14 @@ export const FirebaseProvider = ({children}) => {
     const [oldValues, setOldValues] = React.useState(null);
     const [newValues, setNewValues] = React.useState(null);
     const [totalBalance, setTotalBalance] = React.useState(0);
+    const [loading, setLoading] = React.useState(false);
 
     React.useEffect(() => {
         getDataFromFirebase();
     }, []);
     
     async function save(){
+        setLoading(true);
         await setDoc(doc(dataRef, 'Transacoes'),{
             cashIn: oldValues.oldCashIn + newValues.newCashIn,
             cashOut: oldValues.oldCashOut + newValues.newCashOut,
@@ -28,10 +30,12 @@ export const FirebaseProvider = ({children}) => {
             getDataFromFirebase();
             setNewValues(null);
         })
-        .catch((e) => console.log("Error: ",e));
+        .catch((e) => console.log("Error: ",e))
+        .finally(() => setLoading(false));
     }
 
     async function getDataFromFirebase(){
+        setLoading(true);
         const Ref = doc(database, 'Teste', 'Transacoes');
         const docSnap = await getDoc(Ref);
         if (docSnap.exists()){
@@ -45,6 +49,7 @@ export const FirebaseProvider = ({children}) => {
                 oldCashOut: cashOut,
                 oldHistory: history,
             })
+            setLoading(false);
         }else{
             console.log("Não tem dados");
             createDataStruct();
@@ -61,12 +66,12 @@ export const FirebaseProvider = ({children}) => {
         .then(() => console.log("New Object Created"))
         .catch((e) => console.log("Error: ",e))
         .finally(() => {
-            getDataFromFirebase()
+            getDataFromFirebase();
         });
     }
 
     return(
-        <FirebaseContext.Provider value={{ oldValues, setNewValues, save, totalBalance }}>
+        <FirebaseContext.Provider value={{ oldValues, setNewValues, save, totalBalance, loading }}>
             {children}
         </FirebaseContext.Provider>
     )

@@ -1,59 +1,101 @@
 import React from 'react';
-import { DataContext } from '../../Contexts/DataContext';
+import { FirebaseContext } from '../../Contexts/FIrebaseContext';
 import { ModalBackdrop, ModalItem, ModalTitle, ModalInput, ButtonsContainer, CancelButton, ConfirmButton, ModalForm } from './StyledForm';
 
 const Modal = (props) => {
 
-    const { setTransactionTitle, setTransactionDate, setTransactionAmmount } = React.useContext(DataContext);
+    const { setNewValues, save, totalBalance, oldValues } = React.useContext(FirebaseContext);
+    const [transactionAmmount, setTransactionAmmount] = React.useState('');
+    const [transactionTitle, setTransactionTitle] = React.useState('');
+    const [transactionDate, setTransactionDate] = React.useState('');
+    
+    console.log(oldValues);
 
+    React.useEffect(() => {
+        if(transactionAmmount < 0){
+            setNewValues({newCashIn: 0, newCashOut: transactionAmmount, newHistory: {
+                title: transactionTitle,
+                ammount: transactionAmmount,
+                date: transactionDate,
+            }});
+        }else{
+            setNewValues({newCashIn: transactionAmmount, newCashOut: 0, newHistory: {
+                title: transactionTitle,
+                ammount: transactionAmmount,
+                date: transactionDate,
+            }});
+        }
 
-    function handleChange({target}){
-        console.log(target.value);
-        // switch(target.id){
-        //     case 'title':
-        //         setTransactionTitle(target.value);
-        //         break;
-        //     case 'date':
-        //         setTransactionDate(target.value);
-        //         break;
-        //     case 'ammount':
-        //             if(target.value === ''){
-        //                 setTransactionAmmount('');
-        //             }
-        //             else{
-        //                 setTransactionAmmount(target.value);
-        //             }
-        //         break;
-        //     default: 
-        //         break;
-        // }
+    }, [transactionAmmount, transactionTitle, transactionDate]);
+    
+    function handleChange({target}) {
+        switch(target.id){
+            case 'title':
+                setTransactionTitle(target.value);
+                break;
+            case 'date':
+                setTransactionDate(target.value);
+                break;
+            case 'ammount':
+                if(target.value === ''){
+                    setTransactionAmmount('');
+                }else{
+                    convertValue(target.value);
+                }
+                break;
+            default: break;
+        }
+       
+    }
+
+    function convertValue(value){
+        const newValue = parseFloat(value);
+        if(newValue){
+            console.log("C: ",newValue);
+            setTransactionAmmount(newValue);
+        }
+    }
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        save();
+        setTransactionAmmount('');
+        setTransactionTitle('');
+        setTransactionDate('');
+        props.onClickFunction();
     }
 
     return (
         <ModalBackdrop>
-            <ModalItem>
-                <ModalForm>
+            <ModalItem className='fadeInAnimation'>
+                <ModalForm onSubmit={handleSubmit} id='form'>
                     <ModalTitle>New Transaction</ModalTitle>
 
                     <ModalInput
-                        placeholder='Transaction Name'
                         type='text'
+                        value={transactionTitle}
                         onChange={handleChange}
+                        placeholder='title'
+                        id='title'
                     />
                     <ModalInput
-                        placeholder='mm/dd/yyyy'
+                       value={transactionAmmount}
+                       onChange={handleChange}
+                       placeholder='ammount'
+                       id='ammount'
+                       type='number'
+                    />
+                    <ModalInput
                         type='date'
+                        value={transactionDate}
                         onChange={handleChange}
-                    />
-                    <ModalInput
-                        placeholder='Transaction Value'
-                        type='text'
-                        onChange={handleChange}
+                        placeholder='date'
+                        id='date'
                     />
                 </ModalForm>
                 <ButtonsContainer>
                     <CancelButton onClick={props.onClickFunction} >Cancel</CancelButton>
-                    <ConfirmButton>Confirm</ConfirmButton>
+                    <ConfirmButton form='form'>Confirm</ConfirmButton>
                 </ButtonsContainer>
             </ModalItem>
         </ModalBackdrop>
