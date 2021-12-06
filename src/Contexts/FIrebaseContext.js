@@ -10,6 +10,10 @@ export const FirebaseProvider = ({children}) => {
     const [oldValues, setOldValues] = React.useState(null);
     const [newValues, setNewValues] = React.useState(null);
     const [loading, setLoading] = React.useState(false);
+    
+    const [objEdit, setObjEdit] = React.useState(null);
+    const [isEditModalVisible, setIsEditModalVisible] = React.useState(false); 
+    const [isDeleteModalVisible, setIsDeleteModalVisible] = React.useState(false); 
 
     React.useEffect(() => {
         getDataFromFirebase();
@@ -56,6 +60,7 @@ export const FirebaseProvider = ({children}) => {
         copyOfArray.splice(index, 1);
         copyOfArray.push(updatedTransaction);
         updateDataInFirebase(copyOfArray);
+        setIsEditModalVisible(false);
     }
 
     function handleWithUpdate(transactionToUpdate, newAmmount, newTitle, newDate) {
@@ -80,6 +85,7 @@ export const FirebaseProvider = ({children}) => {
         const copyOfArray = oldValues.oldHistory;
         copyOfArray.splice(index, 1);
         updateDataInFirebase(copyOfArray);
+        setIsDeleteModalVisible(false);
     }
 
     async function updateDataInFirebase(array){
@@ -121,7 +127,8 @@ export const FirebaseProvider = ({children}) => {
 
 
     return(
-        <FirebaseContext.Provider value={{ oldValues, setNewValues, save, loading, getFirebaseItem, deleteItemInFirebase, }}>
+        <FirebaseContext.Provider value={{ oldValues, setNewValues, save, loading, getFirebaseItem, deleteItemInFirebase, objEdit, setObjEdit, isDeleteModalVisible,
+        setIsDeleteModalVisible, isEditModalVisible, setIsEditModalVisible }}>
             {children}
         </FirebaseContext.Provider>
     )

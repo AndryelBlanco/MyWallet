@@ -6,10 +6,11 @@ import TransactionItem from '../../Components/TransactionItem/TransactionItem';
 import Modal from '../../Components/Modal/Modal';
 import InfoCard from '../../Components/InfoCard/InfoCard';
 import LoadingItem from '../../Components/LoadingItem/LoadingItem';
+import DeleteModal from '../../Components/Modal/DeleteModal';
 
 
 const HomePage = () => {
-    const { oldValues, loading } = React.useContext(FirebaseContext);
+    const { oldValues, loading, isDeleteModalVisible, isEditModalVisible, setIsDeleteModalVisible, setIsEditModalVisible, objEdit } = React.useContext(FirebaseContext);
     const [hasOldValue, setHasOldValues] = React.useState(false);
     const [isModalVisible, setIsModalVisible] = React.useState(false); 
 
@@ -21,6 +22,8 @@ const HomePage = () => {
     return (
         <PageHome>
             {isModalVisible ? <Modal type={'New Transaction'} onClickFunction={() => setIsModalVisible(!isModalVisible)}/> : null}
+            {isDeleteModalVisible ? <DeleteModal index={objEdit.index} title={objEdit.title} onClickFunction={() => setIsDeleteModalVisible(false)}/> : null}
+            {isEditModalVisible ? <Modal type={'Edit Transaction'} index={objEdit.index} oldTitle={objEdit.title} oldAmmount={objEdit.ammount}  onClickFunction={() => setIsEditModalVisible(!isEditModalVisible)}/> : null}
             <MainContainer>
                 {oldValues !== null ?
                     <>

@@ -11,7 +11,7 @@ const DeleteModal = ({ onClickFunction, title, index }) => {
 
     return (
         <ModalBackdrop>
-            <ModalItem>
+            <ModalItem className='fadeInAnimation'>
                 <ModalTitle>Delete {title} ?</ModalTitle>
                 <ButtonsContainer>
                     <CancelButton onClick={onClickFunction}>Cancel</CancelButton>

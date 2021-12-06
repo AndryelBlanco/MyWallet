@@ -8,7 +8,7 @@ export const ModalBackdrop = styled.div`
     
     width: 100%;
     height: 100vh;
-    position: fixed;
+    position: absolute;
     z-index: 100;
 
     background-color: rgba(0, 0, 0, .7);

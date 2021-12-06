@@ -4,13 +4,13 @@ import { ModalBackdrop, ModalItem, ModalTitle, ModalInput, ButtonsContainer, Can
 
 const Modal = (props) => {
 
-    const { setNewValues, newValues, save, getFirebaseItem } = React.useContext(FirebaseContext);
+    const { setNewValues, objEdit, save, getFirebaseItem } = React.useContext(FirebaseContext);
     const [transactionAmmount, setTransactionAmmount] = React.useState('');
     const [transactionTitle, setTransactionTitle] = React.useState('');
     const [transactionDate, setTransactionDate] = React.useState('');
 
-    const [ammountToEdit, setAmmountToEdit] = React.useState(props.oldAmmount);
-    const [titleToEdit, setTitleToEdit] = React.useState(props.oldTitle);
+    const [ammountToEdit, setAmmountToEdit] = React.useState(objEdit.ammount);
+    const [titleToEdit, setTitleToEdit] = React.useState(objEdit.title);
     const [dateToEdit, setDateToEdit] = React.useState('');
     const [valuesToEdit, setValuesToEdit] = React.useState(null);
 
@@ -45,9 +45,7 @@ const Modal = (props) => {
     function handleChange({target}) {
         switch(target.id){
             case 'title':
-                if(target.value.length < 26){
-                    setTransactionTitle(target.value);
-                }
+                setTransactionTitle(target.value);
                 break;
             case 'date':
                 if(isValid){
@@ -84,9 +82,7 @@ const Modal = (props) => {
     function handleEdit({target}) {
         switch(target.id){
             case 'title':
-                if(target.value.length < 26){
-                    setTitleToEdit(target.value);
-                }
+                setTitleToEdit(target.value);
                 break;
             case 'date':
                 if(isValid){
@@ -157,7 +153,7 @@ const Modal = (props) => {
             <ModalBackdrop>
                 <ModalItem className='fadeInAnimation'>
                     <ModalForm onSubmit={handleSubmit} id='form'>
-                        <ModalTitle>{props.type}</ModalTitle>
+                        <ModalTitle>New Transaction</ModalTitle>
                         <ModalInput
                             type='text'
                             value={transactionTitle}
@@ -165,6 +161,7 @@ const Modal = (props) => {
                             placeholder='title'
                             id='title'
                             isValid={true}
+                            maxLength={26}
                         />
                         <ModalInput
                            value={transactionAmmount}
@@ -197,15 +194,15 @@ const Modal = (props) => {
             <ModalBackdrop>
                 <ModalItem className='fadeInAnimation'>
                     <ModalForm onSubmit={handleEditSubmit} id='form-edit'>
-                        <ModalTitle>{props.type}</ModalTitle>
+                        <ModalTitle>Edit Transaction</ModalTitle>
                         <ModalInput
                             type='text'
                             value={titleToEdit}
                             onChange={handleEdit}
                             placeholder='title'
                             id='title'
-                            maxLength={10}
                             isValid={true}
+                            maxLength={26}
                         />
                         <ModalInput
                            value={ammountToEdit}

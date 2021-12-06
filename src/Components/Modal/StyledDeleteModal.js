@@ -8,7 +8,7 @@ export const ModalBackdrop = styled.div`
     justify-content: center;
     
     width: 100%;
-    height: 110vh;
+    height: 100vh;
     position: absolute;
     z-index: 100;
 
