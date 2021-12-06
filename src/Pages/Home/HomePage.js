@@ -1,7 +1,7 @@
 import React from 'react';
 import { FirebaseContext } from '../../Contexts/FIrebaseContext';
 
-import { GenericText, HistoricContainer, MainContainer, NewTransactionButton, PageHome, TransactionsMenu } from './StyledHomePage';
+import { GenericText, HistoricContainer, MainContainer, NewTransactionButton, PageHome, TransactionsList, TransactionsMenu } from './StyledHomePage';
 import TransactionItem from '../../Components/TransactionItem/TransactionItem'; 
 import Modal from '../../Components/Modal/Modal';
 import InfoCard from '../../Components/InfoCard/InfoCard';
@@ -9,9 +9,10 @@ import LoadingItem from '../../Components/LoadingItem/LoadingItem';
 
 
 const HomePage = () => {
-    const { totalBalance, oldValues, loading } = React.useContext(FirebaseContext);
-    const [isModalVisible, setIsModalVisible] = React.useState(false); 
+    const { oldValues, loading } = React.useContext(FirebaseContext);
     const [hasOldValue, setHasOldValues] = React.useState(false);
+    const [isModalVisible, setIsModalVisible] = React.useState(false); 
+
     
     React.useEffect(() => {
         if(oldValues !== null) setHasOldValues(true);
@@ -19,22 +20,22 @@ const HomePage = () => {
 
     return (
         <PageHome>
-            {isModalVisible ? <Modal onClickFunction={() => setIsModalVisible(!isModalVisible)}/> : null}
+            {isModalVisible ? <Modal type={'New Transaction'} onClickFunction={() => setIsModalVisible(!isModalVisible)}/> : null}
             <MainContainer>
                 {oldValues !== null ?
                     <>
                         <InfoCard
                             title='CashIn'
-                            ammount={oldValues.oldCashIn}
+                            ammount={(oldValues.oldCashIn).toFixed(2)}
                             type='in'
                         />
                         <InfoCard
                             title='Balance'
-                            ammount={totalBalance}
+                            ammount={(oldValues.oldCashIn + oldValues.oldCashOut).toFixed(2)}
                         />
                         <InfoCard
                             title='CashOut'
-                            ammount={oldValues.oldCashOut}
+                            ammount={(oldValues.oldCashOut).toFixed(2)}
                             type='out'
                         />
                     </>
@@ -50,11 +51,15 @@ const HomePage = () => {
                             <NewTransactionButton onClick={() => setIsModalVisible(!isModalVisible)}>+ New transaction</NewTransactionButton>
                         </TransactionsMenu>
                         {hasOldValue ?
-                            <ul>
-                                {oldValues.oldHistory.map( tObj =>
-                                    <TransactionItem key={Math.random()} title={tObj.title} ammount={tObj.ammount} date={tObj.date}/>
-                                )}
-                            </ul>
+                            <TransactionsList>
+                                {
+                                    oldValues.oldHistory.map((transaction, index) => {
+                                        return (
+                                            <TransactionItem key={index} title={transaction.title} ammount={transaction.ammount} index={index} date={transaction.date}/>
+                                        );
+                                    })
+                                }
+                            </TransactionsList>
                             :
                             null 
                         }

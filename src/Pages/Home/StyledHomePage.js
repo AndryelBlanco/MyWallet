@@ -31,6 +31,7 @@ export const HistoricContainer = styled.div`
     gap: 1rem;
 
     width: 100%;
+    overflow-x: hidden;
 
     padding: 1rem;
     margin-top: 2rem;
@@ -41,7 +42,7 @@ export const TransactionsMenu = styled.div`
     align-items: center;
     justify-content: space-between;
     
-    width: 40rem;
+    width: 80%;
     
     padding: 1rem;
 `;
@@ -60,6 +61,31 @@ export const NewTransactionButton = styled.button`
 
     :hover{
         filter: saturate(2);
+    }
+`;
+
+export const TransactionsList = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    
+    width: 100%;
+    height: 20rem;
+
+    padding: 1rem;
+    overflow-y:scroll;
+
+    &::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: #00FF85;
+        border-radius: 100px;
+    }
+    &::-webkit-scrollbar-track {
+        background: #FFFFFF;
     }
 `;
 

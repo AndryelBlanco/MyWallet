@@ -1,15 +1,26 @@
 import styled from "styled-components";
+import { colors } from "../../Helper/StyleSheet";
 
 export const Container = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.2rem;
+
+    width: 80%;
+
+    margin-bottom: 1rem;
+`;
+
+export const TransactionInfos = styled.div`
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
     align-items: flex-end;
     justify-content: space-between;
 
-    width: 38rem;
+    width: 80%;
 
     padding: 1rem;
-    margin-bottom: 1rem;
     border-radius: 10px;
 
     background: #FFFFFF;
@@ -21,8 +32,6 @@ export const ItemTitle = styled.h1`
     font-size: 1rem;
     font-weight: bold;
     color: #00131A;
-    
-    max-width: 10rem;
 `;
 
 export const ItemDate = styled.span`
@@ -39,4 +48,43 @@ export const ItemAmmount = styled.span`
     color: ${props => (props.ammount >= 0 ? '#42DB29' : "#FF3333")};
 
     text-align: right;
+`;
+
+export const EditButton = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    height: 100%;
+    width: 3.18rem;
+
+    border-radius: 8px;
+    background-color: ${colors.alternate_color};
+
+    cursor: pointer;
+    transition: .3s ease;
+
+    &:hover{
+        filter: opacity(.8);
+    }
+`;
+
+export const DeleteButton = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    height: 100%;
+    width: 3.18rem;
+
+    border-radius: 8px;
+    background-color: ${colors.red_color};
+
+    cursor: pointer;
+    transition: .3s ease;
+
+    &:hover{
+        filter: opacity(.8);
+    }
+
 `;

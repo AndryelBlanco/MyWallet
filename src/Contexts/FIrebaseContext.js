@@ -1,7 +1,6 @@
 import React from 'react';
 import { db } from '../Helper/FirebaseConfig';
 import { collection, setDoc, getDoc, doc } from "firebase/firestore";
-import { AuthContext } from './AuthContext';
 
 export const FirebaseContext = React.createContext({});
 
@@ -10,7 +9,6 @@ export const FirebaseProvider = ({children}) => {
     const dataRef = collection(database, "Teste");
     const [oldValues, setOldValues] = React.useState(null);
     const [newValues, setNewValues] = React.useState(null);
-    const [totalBalance, setTotalBalance] = React.useState(0);
     const [loading, setLoading] = React.useState(false);
 
     React.useEffect(() => {
@@ -20,8 +18,6 @@ export const FirebaseProvider = ({children}) => {
     async function save(){
         setLoading(true);
         await setDoc(doc(dataRef, 'Transacoes'),{
-            cashIn: oldValues.oldCashIn + newValues.newCashIn,
-            cashOut: oldValues.oldCashOut + newValues.newCashOut,
             history: [...oldValues.oldHistory, newValues.newHistory]
         })
         .then(() => {
@@ -39,21 +35,66 @@ export const FirebaseProvider = ({children}) => {
         const Ref = doc(database, 'Teste', 'Transacoes');
         const docSnap = await getDoc(Ref);
         if (docSnap.exists()){
-            const { cashIn, cashOut, history } = docSnap.data();
-            console.log("Existing Cash in: ", cashIn);
-            console.log("Existing Cash out: ", cashOut);
-            console.log("Existing History: ", history);
-            setTotalBalance(cashIn + cashOut);
-            setOldValues({
-                oldCashIn: cashIn,
-                oldCashOut: cashOut,
-                oldHistory: history,
-            })
-            setLoading(false);
+            const { history } = docSnap.data();
+            handleWithData(history)
+            setLoading(false)
         }else{
             console.log("Não tem dados");
             createDataStruct();
         }
+    }
+
+    function getFirebaseItem(index, title, ammount, date) {
+        const transactionToUpdate = oldValues.oldHistory[index];
+        const newAmmount = ammount;
+        const newTitle = title;
+        const newDate = date;
+
+        const updatedTransaction = handleWithUpdate(transactionToUpdate, newAmmount, newTitle, newDate);
+        
+        const copyOfArray = oldValues.oldHistory;
+        copyOfArray.splice(index, 1);
+        copyOfArray.push(updatedTransaction);
+        updateDataInFirebase(copyOfArray);
+    }
+
+    function handleWithUpdate(transactionToUpdate, newAmmount, newTitle, newDate) {
+        transactionToUpdate.ammount = newAmmount;
+        transactionToUpdate.title = newTitle;
+        transactionToUpdate.date = newDate;
+        return transactionToUpdate;
+    }
+
+    function handleWithData(history) {
+        const totalCashOut =  history.reduce(getTotalCashOut, 0);
+        const totalCashIn =  history.reduce(getTotalCashIn, 0);
+        setOldValues({
+            oldCashIn: totalCashIn,
+            oldCashOut: totalCashOut,
+            oldHistory: history,
+        })
+    }
+
+    function deleteItemInFirebase(key){
+        const index = key;
+        const copyOfArray = oldValues.oldHistory;
+        copyOfArray.splice(index, 1);
+        updateDataInFirebase(copyOfArray);
+    }
+
+    async function updateDataInFirebase(array){
+        setLoading(true);
+        await setDoc(doc(dataRef, 'Transacoes'),{
+            history: array,
+        })
+        .then(() => {
+            console.log("saved");
+            setNewValues(null);
+            console.log("Getting new data...");
+            getDataFromFirebase();
+        })
+        .catch((e) => console.log("Error: ",e))
+        .finally(() => setLoading(false));
     }
 
     async function createDataStruct(){
@@ -70,8 +111,17 @@ export const FirebaseProvider = ({children}) => {
         });
     }
 
+    function getTotalCashOut(total, item){
+        return  (item.ammount < 0)? total + item.ammount : total;
+    }
+
+    function getTotalCashIn(total, item){
+        return  (item.ammount >= 0)? total + item.ammount : total;
+    }
+
+
     return(
-        <FirebaseContext.Provider value={{ oldValues, setNewValues, save, totalBalance, loading }}>
+        <FirebaseContext.Provider value={{ oldValues, setNewValues, save, loading, getFirebaseItem, deleteItemInFirebase, }}>
             {children}
         </FirebaseContext.Provider>
     )
