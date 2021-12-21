@@ -1,6 +1,7 @@
 import React from 'react';
-import { FirebaseContext } from '../../Contexts/FIrebaseContext';
-import { ModalBackdrop, ModalItem, ModalTitle, ModalInput, ButtonsContainer, CancelButton, ConfirmButton, ModalForm, ErrorMessage } from './StyledForm';
+import { FirebaseContext } from '../../Contexts/FirebaseContext';
+import { TypeArray } from '../../Helper/TransactionType';
+import { ModalBackdrop, ModalItem, ModalTitle, ModalInput, ButtonsContainer, CancelButton, ConfirmButton, ModalForm, ErrorMessage, ModalSelect } from './StyledForm';
 
 const Modal = (props) => {
 
@@ -8,13 +9,23 @@ const Modal = (props) => {
     const [transactionAmmount, setTransactionAmmount] = React.useState('');
     const [transactionTitle, setTransactionTitle] = React.useState('');
     const [transactionDate, setTransactionDate] = React.useState('');
+    const [transactionType, setTransactionType] = React.useState('');
 
-    const [ammountToEdit, setAmmountToEdit] = React.useState(objEdit.ammount);
-    const [titleToEdit, setTitleToEdit] = React.useState(objEdit.title);
+    const [ammountToEdit, setAmmountToEdit] = React.useState('');
+    const [titleToEdit, setTitleToEdit] = React.useState('');
     const [dateToEdit, setDateToEdit] = React.useState('');
+    const [typeToEdit, setTypeToEdit] = React.useState('');
     const [valuesToEdit, setValuesToEdit] = React.useState(null);
 
     const [isValid, setIsValid] = React.useState(true);
+
+    React.useEffect(() => {
+        if(objEdit !== null){
+            setAmmountToEdit(objEdit.ammount);
+            setTitleToEdit(objEdit.title);
+            setTypeToEdit(objEdit.type);
+        }
+    }, [objEdit]);
 
     React.useEffect(() => {
         if(transactionAmmount < 0){
@@ -22,22 +33,25 @@ const Modal = (props) => {
                 title: transactionTitle,
                 ammount: transactionAmmount,
                 date: transactionDate,
+                type: transactionType
             }});
         }else{
             setNewValues({ newHistory: {
                 title: transactionTitle,
                 ammount: transactionAmmount,
                 date: transactionDate,
+                type: transactionType
             }});
         }
 
-    }, [transactionAmmount, transactionTitle, transactionDate]);
+    }, [transactionAmmount, transactionTitle, transactionDate, transactionType]);
 
     React.useEffect(() => {
         setValuesToEdit({ editedValues: {
                 title: titleToEdit,
                 ammount: ammountToEdit,
                 date: dateToEdit,
+                type: typeToEdit
             }});
 
     }, [ammountToEdit, titleToEdit, dateToEdit]);
@@ -63,6 +77,9 @@ const Modal = (props) => {
                 }else{
                     convertValue(target.value);
                 }
+                break;
+            case 'type':
+                setTransactionType(target.value);
                 break;
             default: break;
         }
@@ -101,6 +118,9 @@ const Modal = (props) => {
                     editConvertValue(target.value);
                 }
                 break;
+            case 'type':
+                setTypeToEdit(target.value);
+                break;
             default: break;
         }
     }
@@ -125,7 +145,7 @@ const Modal = (props) => {
         if(dateIsValid){
             setIsValid(true);
             const {editedValues} = valuesToEdit;
-            getFirebaseItem(props.index, editedValues.title, editedValues.ammount, editedValues.date);
+            getFirebaseItem(props.index, editedValues.title, editedValues.ammount, editedValues.date, editedValues.type);
             props.onClickFunction();
         }else{
             setIsValid(false);
@@ -141,6 +161,7 @@ const Modal = (props) => {
             setTransactionAmmount('');
             setTransactionTitle('');
             setTransactionDate('');
+            setTransactionType('');
             props.onClickFunction();
         }else{
             setIsValid(false);
@@ -181,6 +202,17 @@ const Modal = (props) => {
                             isValid={isValid}
                         />
                         {!isValid ? <ErrorMessage>Selecione uma data válida</ErrorMessage> : null}
+                        <ModalSelect
+                            value={transactionType}
+                            onChange={handleChange}
+                            id='type'
+                            isValid={true}
+                        >   
+                            <option value="" >Select the transaction type</option>
+                            {TypeArray.map((e, index) => (
+                                <option value={e} key={index}>{e}</option>
+                            ))}
+                        </ModalSelect>
                     </ModalForm>
                     <ButtonsContainer>
                         <CancelButton onClick={props.onClickFunction} >Cancel</CancelButton>
@@ -221,6 +253,17 @@ const Modal = (props) => {
                             isValid={isValid}
                         />
                         {!isValid ? <ErrorMessage>Selecione uma data válida</ErrorMessage> : null}
+                        <ModalSelect
+                            value={typeToEdit}
+                            onChange={handleEdit}
+                            id='type'
+                            isValid={true}
+                        >   
+                            <option value="" >Select the transaction type</option>
+                            {TypeArray.map((e, index) => (
+                                <option value={e} key={index}>{e}</option>
+                            ))}
+                        </ModalSelect>
                     </ModalForm>
                     <ButtonsContainer>
                         <CancelButton onClick={props.onClickFunction}>Cancel</CancelButton>

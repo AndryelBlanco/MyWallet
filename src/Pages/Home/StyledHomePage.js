@@ -3,49 +3,52 @@ import { colors } from '../../Helper/StyleSheet';
 
 export const PageHome = styled.div`
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 
     width: 100%;
-    height: 100vh;
+    /* height: 100vh; */
 
     background-color: #FDFDFD;
 `;
 
 export const MainContainer = styled.main`
     display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    
-    width: 100%;
-    height: 30%;
-    
-    padding: 1rem;
-    background-color: ${colors.primary_color};
-    box-shadow: 0px 80px 80px rgba(0, 0, 0, 0.07), 0px 17.869px 17.869px rgba(0, 0, 0, 0.0417275), 0px 5.32008px 5.32008px rgba(0, 0, 0, 0.0282725);
-`;
-
-export const HistoricContainer = styled.div`
-    display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
-
+    justify-content: center;
+    
     width: 100%;
-    overflow-x: hidden;
+    height: 100vh;
 
-    padding: 1rem;
-    margin-top: 2rem;
+    /* padding: 1rem; */
+    background-color: #FAFBFB;
+    box-shadow: 0px 80px 80px rgba(0, 0, 0, 0.07), 0px 17.869px 17.869px rgba(0, 0, 0, 0.0417275), 0px 5.32008px 5.32008px rgba(0, 0, 0, 0.0282725);
+
 `;
 
-export const TransactionsMenu = styled.div`
+export const CardsContainer = styled.div`
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    
+    justify-content: start;
+    align-self: center;
+    /* flex-wrap: wrap; */
+    gap: 1rem;
+
     width: 80%;
     
-    padding: 1rem;
+    padding: 1rem 0rem;
+
 `;
+
+export const SecondaryCardsContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+
+    /* width: 48%; */
+`;
+
 
 export const NewTransactionButton = styled.button`
     border: none;
@@ -93,4 +96,49 @@ export const GenericText = styled.span`
     font-size: 1.1rem;
     font-weight: 400;
     color: ${colors.terciary_text_color};
+`;
+
+export const LogoContainer = styled.div`
+    display: flex;
+    align-items: center;
+    align-self: flex-end;
+    justify-content: space-between;
+    
+    width: 100%;
+    
+    padding: 1.2rem 3rem;
+    background-color: ${colors.primary_color};
+`;
+
+
+
+export const DropDownMenu = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+
+`;
+
+
+export const LogoutButton = styled.div`
+    display: ${props => (props.isClicked ? 'flex' : 'none' )};
+    align-items: center;
+    justify-content: center;
+
+    background-color: #FFFFFF;
+    padding: .35rem;
+    border-radius: 8px;
+
+    top:  3.75rem;
+    position: absolute;
+
+    font-size: .765rem;
+    font-weight: 600;
+    color: ${colors.terciary_color};
+
+    cursor: pointer;
+    transition: .5s;
+    filter: opacity(.8);
+
 `;

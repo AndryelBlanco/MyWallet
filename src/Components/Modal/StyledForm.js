@@ -39,7 +39,7 @@ export const ModalForm = styled.form`
 export const ModalTitle = styled.h1`
     font-size: 1.2rem;
     font-weight: 700;
-    color: ${colors.green_color};
+    color: ${colors.primary_color};
 `;
 
 export const ModalInput = styled.input`
@@ -57,8 +57,40 @@ export const ModalInput = styled.input`
 
     :focus,
     :hover{
-        border-color: ${props => props.isValid ? `${colors.green_color}` : "red"};
-        box-shadow: ${props => props.isValid ? `0 0 0 1px ${colors.green_color}` : "0 0 0 1px red"};
+        border-color: ${props => props.isValid ? `${colors.primary_color}` : "red"};
+        box-shadow: ${props => props.isValid ? `0 0 0 1px ${colors.primary_color}` : "0 0 0 1px red"};
+    }
+`;
+
+export const ModalSelect = styled.select`
+    width: 100%;
+    
+    background-color: #F0F0F0;
+    outline: none;
+    border: 1px solid #F0F0F0;
+    
+    padding: .365rem;
+    border-radius: 4px;
+    
+    cursor: pointer;
+    transition: .3s ease-in-out;
+
+    :focus,
+    :hover{
+        border-color: ${props => props.isValid ? `${colors.primary_color}` : "red"};
+        box-shadow: ${props => props.isValid ? `0 0 0 1px ${colors.primary_color}` : "0 0 0 1px red"};
+    }
+
+    option {
+        display: flex;
+
+        background: #F0F0F0;
+
+        padding: 0px 2px 1px;
+
+        font-size: 1rem;
+        font-weight: 400;
+        color: #676767;
     }
 `;
 
@@ -99,8 +131,8 @@ export const ConfirmButton = styled.button`
 
     text-align: center;
 
-    border: 1px solid ${colors.green_color};
-    background-color: ${colors.green_color};
+    border: 1px solid ${colors.primary_color};
+    background-color: ${colors.primary_color};
     border-radius: 4px;
 
     font-size: 1rem;

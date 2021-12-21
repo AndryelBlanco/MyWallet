@@ -1,12 +1,15 @@
 import React from 'react';
 import { db } from '../Helper/FirebaseConfig';
 import { collection, setDoc, getDoc, doc } from "firebase/firestore";
+import { AuthContext } from './AuthContext';
 
 export const FirebaseContext = React.createContext({});
 
+
 export const FirebaseProvider = ({children}) => {
+    const { reference } = React.useContext(AuthContext);
     const database = db;
-    const dataRef = collection(database, "Teste");
+
     const [oldValues, setOldValues] = React.useState(null);
     const [newValues, setNewValues] = React.useState(null);
     const [loading, setLoading] = React.useState(false);
@@ -15,18 +18,22 @@ export const FirebaseProvider = ({children}) => {
     const [isEditModalVisible, setIsEditModalVisible] = React.useState(false); 
     const [isDeleteModalVisible, setIsDeleteModalVisible] = React.useState(false); 
 
+    
     React.useEffect(() => {
-        getDataFromFirebase();
-    }, []);
+        if(reference !== null){
+            getDataFromFirebase();
+        }
+    }, [reference]);
     
     async function save(){
         setLoading(true);
-        await setDoc(doc(dataRef, 'Transacoes'),{
+        const dataRef = collection(database, reference);
+        await setDoc(doc(dataRef, reference),{
             history: [...oldValues.oldHistory, newValues.newHistory]
         })
         .then(() => {
-            console.log("saved");
-            console.log("Getting new data...");
+            // console.log("saved");
+            // console.log("Getting new data...");
             getDataFromFirebase();
             setNewValues(null);
         })
@@ -36,25 +43,28 @@ export const FirebaseProvider = ({children}) => {
 
     async function getDataFromFirebase(){
         setLoading(true);
-        const Ref = doc(database, 'Teste', 'Transacoes');
-        const docSnap = await getDoc(Ref);
-        if (docSnap.exists()){
-            const { history } = docSnap.data();
-            handleWithData(history)
-            setLoading(false)
-        }else{
-            console.log("Não tem dados");
-            createDataStruct();
+        if(reference !== null){
+            const Ref = doc(database, reference, reference);
+            const docSnap = await getDoc(Ref);
+            if (docSnap.exists()){
+                const { history } = docSnap.data();
+                handleWithData(history)
+                setLoading(false)
+            }else{
+                // console.log("Não tem dados");
+                createDataStruct();
+            }
         }
     }
 
-    function getFirebaseItem(index, title, ammount, date) {
+    function getFirebaseItem(index, title, ammount, date, type) {
         const transactionToUpdate = oldValues.oldHistory[index];
         const newAmmount = ammount;
         const newTitle = title;
         const newDate = date;
+        const newType = type;
 
-        const updatedTransaction = handleWithUpdate(transactionToUpdate, newAmmount, newTitle, newDate);
+        const updatedTransaction = handleWithUpdate(transactionToUpdate, newAmmount, newTitle, newDate, newType);
         
         const copyOfArray = oldValues.oldHistory;
         copyOfArray.splice(index, 1);
@@ -63,10 +73,11 @@ export const FirebaseProvider = ({children}) => {
         setIsEditModalVisible(false);
     }
 
-    function handleWithUpdate(transactionToUpdate, newAmmount, newTitle, newDate) {
+    function handleWithUpdate(transactionToUpdate, newAmmount, newTitle, newDate, newType) {
         transactionToUpdate.ammount = newAmmount;
         transactionToUpdate.title = newTitle;
         transactionToUpdate.date = newDate;
+        transactionToUpdate.type = newType;
         return transactionToUpdate;
     }
 
@@ -90,13 +101,14 @@ export const FirebaseProvider = ({children}) => {
 
     async function updateDataInFirebase(array){
         setLoading(true);
-        await setDoc(doc(dataRef, 'Transacoes'),{
+        const dataRef = collection(database, reference);
+        await setDoc(doc(dataRef, reference),{
             history: array,
         })
         .then(() => {
-            console.log("saved");
+            // console.log("saved");
             setNewValues(null);
-            console.log("Getting new data...");
+            // console.log("Getting new data...");
             getDataFromFirebase();
         })
         .catch((e) => console.log("Error: ",e))
@@ -104,17 +116,19 @@ export const FirebaseProvider = ({children}) => {
     }
 
     async function createDataStruct(){
-        const docRef = collection(database, "Teste");
-        await setDoc(doc(docRef, "Transacoes"), {
-            cashIn: 0,
-            cashOut: 0,
-            history: []
-        })
-        .then(() => console.log("New Object Created"))
-        .catch((e) => console.log("Error: ",e))
-        .finally(() => {
-            getDataFromFirebase();
-        });
+        if(reference !== null){
+            const docRef = collection(database, reference);
+            await setDoc(doc(docRef, reference), {
+                cashIn: 0,
+                cashOut: 0,
+                history: []
+            })
+            .then(() => console.log("New Object Created"))
+            .catch((e) => console.log("Error: ",e))
+            .finally(() => {
+                getDataFromFirebase();
+            });
+        }
     }
 
     function getTotalCashOut(total, item){
