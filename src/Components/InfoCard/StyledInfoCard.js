@@ -39,7 +39,23 @@ export const Card = styled.div`
     }
 
     @media ${device.laptopL}{
-        height: 14rem;
+        height: 100%;
+    }
+
+    @media ${device.desktop}{
+        padding: 2rem 2rem;
+        height: 100%;
+    }
+
+    @media only screen 
+    and (min-width: 1024px) 
+    and (max-height: 1366px) 
+    and (orientation: portrait) 
+    and (-webkit-min-device-pixel-ratio: 1.5) 
+    {   
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
     }
 `;
 
@@ -51,6 +67,21 @@ export const CardTitle = styled.span`
     @media ${device.laptopL}{
         font-size: 1.6rem;
         font-weight: 500;
+    }
+
+    @media ${device.desktop}{
+        font-size: 2rem;
+        font-weight: 500;
+    }
+
+    @media only screen 
+    and (min-width: 1024px) 
+    and (max-height: 1366px) 
+    and (orientation: portrait) 
+    and (-webkit-min-device-pixel-ratio: 1.5) 
+    {   
+        font-size: 1.6rem;
+        font-weight: 700;
     }
 `;
 
@@ -68,6 +99,19 @@ export const CardData = styled.span`
 
     @media ${device.laptopL}{
         font-size: 4rem;
+    }
+
+    @media ${device.desktop}{
+        font-size: 8rem;
+    }
+
+    @media only screen 
+    and (min-width: 1024px) 
+    and (max-height: 1366px) 
+    and (orientation: portrait) 
+    and (-webkit-min-device-pixel-ratio: 1.5) 
+    {   
+        width: 60%;
     }
 `;
 
@@ -88,7 +132,6 @@ export const CardAlt = styled.div`
     background-color: ${props => props.type === 'expense' ? "#FB4C4C" : "#41CE69"};
     padding: 0 1.2rem;
     border-radius: 12px;
-
     user-select: none;
 
     @media ${device.laptop}{
@@ -103,10 +146,23 @@ export const CardAlt = styled.div`
     }
 
     @media ${device.laptopL}{
-        /* width: 15rem; */
-        height: 6.45rem;
-        padding: 1.2rem;
-        gap: 1rem;
+        /* justify-content: start; */
+        padding: 1rem 1rem;
+        height: 46%;
+    }
+
+    @media only screen 
+    and (min-width: 1024px) 
+    and (max-height: 1366px) 
+    and (orientation: portrait) 
+    and (-webkit-min-device-pixel-ratio: 1.5) 
+    {   
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 1rem;
+        width: 39%;
+        /* min-height: 110px; */
     }
 `;
 
@@ -121,7 +177,21 @@ export const CardAltTitle = styled.span`
     }
 
     @media ${device.laptopL}{
-        font-size: 1.2rem;
+        font-size: 1rem;
+    }
+
+    @media ${device.desktop}{
+        font-size: 1.8rem;
+    }
+
+    @media only screen 
+    and (min-width: 1024px) 
+    and (max-height: 1366px) 
+    and (orientation: portrait) 
+    and (-webkit-min-device-pixel-ratio: 1.5) 
+    {   
+        font-size: 1.4rem;
+        /* min-height: 110px; */
     }
 `;
 
@@ -147,7 +217,25 @@ export const CardAltData = styled.span`
     }
 
     @media ${device.laptopL}{
-        font-size: 1.5rem;
+        font-size: 1.8rem;
         margin-left: 1.2rem;
+        /* margin-top: 1rem; */
+    }
+
+    @media ${device.desktop}{
+        width: 17rem;
+        font-size: 2.6rem;
+    }
+
+    @media only screen 
+    and (min-width: 1024px) 
+    and (max-height: 1366px) 
+    and (orientation: portrait) 
+    and (-webkit-min-device-pixel-ratio: 1.5) 
+    {   
+        font-size: 1.4rem;
+        width: 17rem;
+        text-align: center;
+        /* min-height: 110px; */
     }
 `;

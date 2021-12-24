@@ -19,9 +19,26 @@ export const TransactionHistoryContainer = styled.div`
         height: 18rem;
     }
 
+    @media ${device.laptopM}{
+        height: 50%;
+    }
+
     @media ${device.laptopL}{
-        height: 26rem;
+        height: 50%;
         margin-top: 5rem;
+    }
+
+    @media ${device.desktop}{
+        height: 50%;
+    }
+
+    @media only screen 
+    and (min-width: 1024px) 
+    and (max-height: 1366px) 
+    and (orientation: portrait) 
+    and (-webkit-min-device-pixel-ratio: 1.5) 
+    {
+       height: 30rem;
     }
 `;
 
@@ -44,6 +61,15 @@ export const Header = styled.div`
     @media ${device.laptopL}{
         padding: 1rem 1.25rem;
     }
+
+    @media only screen 
+    and (min-width: 1024px) 
+    and (max-height: 1366px) 
+    and (orientation: portrait) 
+    and (-webkit-min-device-pixel-ratio: 1.5) 
+    {
+        padding: 1rem 1.25rem;
+    }
 `;
 
 export const Text = styled.h3`
@@ -52,6 +78,15 @@ export const Text = styled.h3`
     color: ${colors.white_color};
 
     @media ${device.laptopL}{
+        font-size: 1.5rem;
+    }
+
+    @media only screen 
+    and (min-width: 1024px) 
+    and (max-height: 1366px) 
+    and (orientation: portrait) 
+    and (-webkit-min-device-pixel-ratio: 1.5) 
+    {
         font-size: 1.5rem;
     }
 `;
@@ -88,6 +123,17 @@ export const ButtonNewTransaction = styled.button`
     }
 
     @media ${device.laptopL}{
+        padding: 1rem;
+        font-size: 1rem;
+        border-radius: 6px;
+    }
+
+    @media only screen 
+    and (min-width: 1024px) 
+    and (max-height: 1366px) 
+    and (orientation: portrait) 
+    and (-webkit-min-device-pixel-ratio: 1.5) 
+    {
         padding: 1rem;
         font-size: 1rem;
         border-radius: 6px;

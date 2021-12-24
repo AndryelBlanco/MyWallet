@@ -16,6 +16,14 @@ export const Sidebar = styled.aside`
     background: ${colors.primary_color};
     z-index: 999;
 
+    @media only screen 
+    and (min-width: 1024px) 
+    and (max-height: 1366px) 
+    and (orientation: portrait) 
+    and (-webkit-min-device-pixel-ratio: 1.5) 
+    {
+        display: none !important;
+    }
 
     @media ${device.laptop}{
         display: flex;

@@ -3,9 +3,17 @@ import styled from 'styled-components';
 
 import { styleIcons } from '../../Helper/StyleSheet';
 import { GiForkKnifeSpoon } from "react-icons/gi";
-import { IoGameControllerSharp, IoCarSport, IoBarbell, IoCart } from "react-icons/io5";
-import { RiHeartPulseFill } from "react-icons/ri";
+import { IoGameControllerSharp, IoCart } from "react-icons/io5";
 import { MdAttachMoney } from "react-icons/md";
+import { colors, device } from "../../Helper/StyleSheet";
+import { FitnessCenter } from '@styled-icons/material-rounded/FitnessCenter'
+import { Fitness } from '@styled-icons/ionicons-solid/Fitness'
+import { Car } from '@styled-icons/fa-solid/Car'
+import { Cart } from '@styled-icons/ionicons-solid/Cart'
+import { Food } from '@styled-icons/fluentui-system-filled/Food'
+import { GameController } from '@styled-icons/ionicons-solid/GameController'
+import { AttachMoney } from '@styled-icons/material-outlined/AttachMoney'
+
 
 const IconContainer = styled.div`
     display: flex;
@@ -15,6 +23,89 @@ const IconContainer = styled.div`
     min-width: 45px;
     min-height: 45px;
     border-radius: 4px;
+
+    @media ${device.laptop}{
+        min-width: 38px;
+        min-height: 38px;
+    }
+
+    @media ${device.laptopM}{
+        min-width: 3rem;
+        min-height: 3rem;
+    }
+
+    @media ${device.laptopL}{
+        min-width:50px;
+        min-height: 50px;
+    }
+
+    @media ${device.desktop}{
+        min-width: 75px;
+        min-height: 75px;
+    }
+`;
+
+const FitnessIcon = styled(FitnessCenter)`
+    color: #FFF;
+    width: 2.6rem;
+
+    @media ${device.desktop}{
+        width: 4rem;
+    }
+`;
+
+const FitnessHeart = styled(Fitness)`
+    color: #FFF;
+    width: 2.6rem;
+
+    @media ${device.desktop}{
+        width: 4rem;
+    }
+`;
+
+const CarIcon = styled(Car)`
+    color: #FFF;
+    width: 2.3rem;
+
+    @media ${device.desktop}{
+        width: 4rem;
+    }
+`;
+
+const CartIcon = styled(Cart)`
+    color: #FFF;
+    width: 2.5rem;
+
+    @media ${device.desktop}{
+        width: 4rem;
+    }
+`;
+
+const FoodIcon = styled(Food)`
+    color: #FFF;
+    width: 2.5rem;
+
+    @media ${device.desktop}{
+        width: 4rem;
+    }
+`;
+
+const GameControllerIcon = styled(GameController)`
+    color: #FFF;
+    width: 2.5rem;
+
+    @media ${device.desktop}{
+        width: 4rem;
+    }
+`;
+
+const AttachMoneyIcon = styled(AttachMoney)`
+    color: #FFF;
+    width: 2.5rem;
+
+    @media ${device.desktop}{
+        width: 4rem;
+    }
 `;
 
 const TypeIcons = ({type}) => {
@@ -22,73 +113,49 @@ const TypeIcons = ({type}) => {
         case 'Food':
             return (
                 <IconContainer style={{backgroundColor: `${styleIcons.food_purple}`}} title={type}>
-                    <GiForkKnifeSpoon
-                        color='#FFF'
-                        size={30}
-                    />
+                    <FoodIcon/>
                 </IconContainer>
             )
             break;
         case 'Health':
             return (
                 <IconContainer style={{backgroundColor: `${styleIcons.red_healt}`}} title={type}>
-                    <RiHeartPulseFill
-                        color='#FFF'
-                        size={30}
-                        style={{marginLeft: '1px'}}
-                    />
+                    <FitnessHeart/>
                 </IconContainer>
             )
             break;
         case 'Fitness':
             return (
                 <IconContainer style={{backgroundColor: `${styleIcons.orange_fit}`}} title={type}>
-                    <IoBarbell
-                        color='#FFF'
-                        size={30}
-                    />
+                    <FitnessIcon/>
                 </IconContainer>
             )
             break;
         case 'Transport':
             return (
                 <IconContainer style={{backgroundColor: `${styleIcons.green_transport}`}} title={type}>
-                    <IoCarSport
-                        color='#FFF'
-                        size={30}
-                    />
+                    <CarIcon/>
                 </IconContainer>
             )
             break;
         case 'Games':
             return (
                 <IconContainer style={{backgroundColor: `${styleIcons.blue_games}`}} title={type}>
-                    <IoGameControllerSharp
-                        color='#FFF'
-                        size={30}
-                        style={{marginLeft: '1px'}}
-                    />
+                    <GameControllerIcon/>
                 </IconContainer>
             )
             break;
         case 'Incomes':
             return (
                 <IconContainer style={{backgroundColor: `${styleIcons.green_incomes}`}} title={type}>
-                    <MdAttachMoney
-                        color='#FFF'
-                        size={30}
-                        style={{marginLeft: '1px'}}
-                    />
+                    <AttachMoneyIcon/>
                 </IconContainer>
             )
             break;
         case 'Shopping':
             return (
                 <IconContainer style={{backgroundColor: `${styleIcons.red_shopp}`}} title={type}>
-                    <IoCart
-                        color='#FFF'
-                        size={30}
-                    />
+                    <CartIcon/>
                 </IconContainer>
             )
         break;
