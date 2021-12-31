@@ -28,6 +28,13 @@ export const Card = styled.div`
         background-position: 100% 10%;
     }
 
+    @media ${device.mobileS}{
+        min-width: 100%;
+        /* height: 100%; */
+        justify-content: center;
+        align-items: center;
+    }
+
     @media ${device.mobileL}{
         min-width: 100%;
         /* height: 100%; */
@@ -36,8 +43,10 @@ export const Card = styled.div`
     }
 
     @media ${device.tablet}{
-        width: 30%;
-        min-width: 348px;
+        min-width: 100%;
+        /* height: 100%; */
+        justify-content: center;
+        align-items: center;
     }
 
     @media only screen 
@@ -46,6 +55,7 @@ export const Card = styled.div`
     and (orientation: portrait) 
     and (-webkit-min-device-pixel-ratio: 1.5) 
     {   
+        width: 100% !important;
         flex-direction: row;
         justify-content: center;
         align-items: center;
@@ -91,13 +101,18 @@ export const CardTitle = styled.span`
     font-weight: 400;
     color: ${colors.primary_text_color};
 
+    @media ${device.mobileS}{
+        font-size: 1.1rem;
+        font-weight: 400;
+    }
+
     @media ${device.mobileL}{
         font-size: 1.1rem;
         font-weight: 400;
     }
 
     @media ${device.tablet}{
-        font-size: 1.2rem;
+        font-size: 1.3rem;
         font-weight: 400;
     }
 
@@ -107,8 +122,9 @@ export const CardTitle = styled.span`
     and (orientation: portrait) 
     and (-webkit-min-device-pixel-ratio: 1.5) 
     {   
+        width: 300px;
         font-size: 1.6rem;
-        font-weight: 600;
+        font-weight: 500;
     }
 
     @media only screen 
@@ -118,7 +134,7 @@ export const CardTitle = styled.span`
     and (-webkit-min-device-pixel-ratio: 1.5) {
         width: 300px;
         font-size: 1.4rem;
-        font-weight: 600;
+        font-weight: 500;
     }
 
     @media ${device.laptopL}{
@@ -144,6 +160,14 @@ export const CardData = styled.span`
     overflow: hidden;
     white-space: nowrap;
 
+    @media ${device.mobileS}{
+        font-size: 2.2rem;
+        font-weight: 600;
+        text-align: center;
+        width: 100%;
+        margin-left: 0rem;
+    }
+
     @media ${device.mobileL}{
         /* align-self: center; */
         text-align: center;
@@ -154,6 +178,9 @@ export const CardData = styled.span`
     @media ${device.tablet}{
         font-size: 2.6rem;
         font-weight: 600;
+        text-align: center;
+        width: 100%;
+        margin-left: 0rem;
     }
 
     @media only screen 
@@ -162,7 +189,7 @@ export const CardData = styled.span`
     and (orientation: portrait) 
     and (-webkit-min-device-pixel-ratio: 1.5) 
     {   
-        width: 60%;
+        width: 50%;
     }
 
     @media only screen 
@@ -203,29 +230,30 @@ export const CardAlt = styled.div`
     user-select: none;
     transition: .3s ease;
 
-     @media ${device.mobileL}{
+    @media ${device.mobileS}{
         flex-direction: row;
         align-items: center;
         height: 5rem;
         gap: .5rem;
     }
 
-    @media ${device.tablet}{
-        width: 100%;
-    }
 
-    @media only screen 
-    and (min-width: 1024px) 
-    and (max-height: 1366px) 
-    and (orientation: portrait) 
-    and (-webkit-min-device-pixel-ratio: 1.5) 
-    {   
+     @media ${device.mobileL}{
         flex-direction: row;
         align-items: center;
-        justify-content: space-between;
-        padding: 0 1rem;
-        width: 39%;
-        /* min-height: 110px; */
+        height: 5rem;
+        gap: .5rem;
+        /* width: 80% !important; */
+    }
+
+    @media ${device.tablet}{
+        width: 100%;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-evenly;
+        gap: 1rem;
+
+        height: 5rem;
     }
 
     @media only screen 
@@ -237,8 +265,23 @@ export const CardAlt = styled.div`
         align-items: center;
         justify-content: space-between;
         padding: 0 1rem;
-        width: 39%;
+        width: 50%;
     }
+
+    @media only screen 
+    and (min-width: 1024px) 
+    and (max-height: 1366px) 
+    and (orientation: portrait) 
+    and (-webkit-min-device-pixel-ratio: 1.5) {   
+        /* display: none; */
+        flex-direction: row !important;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 1rem;
+        width: 50% !important;
+        /* min-height: 110px; */
+    }
+
 
     @media ${device.laptop}{
         padding: 1rem;
@@ -265,10 +308,25 @@ export const CardAltTitle = styled.span`
     font-weight: 500;
     color: ${colors.primary_text_color};
 
+    @media ${device.mobileS}{
+        font-size: .875rem;
+        font-weight: 600;
+        width: 5rem;
+        /* width: 100%; */
+        /* text-align: center; */
+    }
+
     @media ${device.mobileL}{
         font-size: 1.1rem;
         width: 5rem;
         /* width: 100%; */
+        /* text-align: center; */
+    }
+
+    @media ${device.tablet}{
+        font-size: 1.1rem;
+        width: 5rem;
+        justify-self: start;
         /* text-align: center; */
     }
 
@@ -307,8 +365,16 @@ export const CardAltData = styled.span`
     text-overflow: ellipsis;
     overflow: hidden;
 
+    @media ${device.mobileS}{
+       width: 100%;
+    }
+
     @media ${device.mobileL}{
         font-size: 1.6rem;
+    }
+
+    @media ${device.tablet}{
+        width: 50%;
     }
 
     @media ${device.laptop}{

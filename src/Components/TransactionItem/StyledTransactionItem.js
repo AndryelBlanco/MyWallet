@@ -16,6 +16,14 @@ export const Container = styled.div`
     border-radius: 10px;
 
     transition: .3s ease;
+
+    @media ${device.mobileS}{
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        height: 60%;
+    }
     
     @media ${device.mobileL}{
         flex-direction: column;
@@ -35,7 +43,7 @@ export const Container = styled.div`
     and (orientation: portrait) 
     and (-webkit-min-device-pixel-ratio: 1.5) 
     {
-        height: 35%;
+        height: 38%;
         /* min-height: 110px; */
     }
 
@@ -75,6 +83,12 @@ export const DataContainer = styled.div`
     justify-content: space-between;
 
     width: 100%;
+
+    @media ${device.mobileS}{
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0 1px;
+    }
     
     @media ${device.mobileL}{
         flex-direction: column;
@@ -92,6 +106,10 @@ export const TransactionInfos = styled.div`
 
     padding: 1rem;
     
+    @media ${device.mobileS}{
+        width: 100%;    
+    }
+
     @media ${device.mobileL}{
         width: 100%;    
     }
@@ -113,6 +131,10 @@ export const ItemTitle = styled.h1`
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
+
+    @media ${device.mobileS}{
+        width: 165px;
+    }
 
     @media ${device.mobileL}{
         width: 200px;
@@ -182,6 +204,15 @@ export const ItemAmmount = styled.span`
 
     text-align: right;
 
+    @media ${device.mobileS}{
+        width: 100%;
+        text-align: center;
+        padding: 8px;
+        background-color: #f7f7f7;
+        border-top: 1px solid #e8e8e8;
+        border-bottom: 1px solid #e8e8e8;  
+    }
+
     @media ${device.mobileL}{
         width: 100%;
         text-align: center;
@@ -207,6 +238,13 @@ export const ButtonsContainer = styled.div`
     margin-right: 1rem;
     padding: 0rem 1rem;
 
+    @media ${device.mobileS}{
+        width: 100%;
+        margin-right: 0rem;
+        margin-bottom: 16px;
+        padding: 0 8px;
+    }
+
     @media ${device.mobileL}{
         width: 100%;
         margin-right: 0rem;
@@ -231,6 +269,16 @@ export const EditButton = styled.div`
 
     &:hover{
         filter: opacity(.8);
+    }
+
+    @media ${device.mobileS}{
+        height: 2.4rem;
+        width: 2.4rem;
+    }
+
+    @media ${device.mobileL}{
+        height: 2.4rem;
+        width: 2.4rem;
     }
 
     @media ${device.laptop}{
@@ -267,6 +315,17 @@ export const DeleteButton = styled.div`
         filter: opacity(.8);
     }
 
+    @media ${device.mobileS}{
+        height: 2.4rem;
+        width: 2.4rem;
+    }
+
+    @media ${device.mobileL}{
+        height: 2.4rem;
+        width: 2.4rem;
+    }
+
+
     @media ${device.laptop}{
         height: 2.5rem;
         width: 2.5rem;
@@ -288,6 +347,10 @@ export const Divider = styled.hr`
     width: 1px;
     height: 3rem;
     background-color: #FAFAFA;
+
+    @media ${device.mobileS}{
+        display: none;
+    }
 
     @media ${device.mobileL}{
        display: none;

@@ -30,8 +30,11 @@ export const styleIcons = {
 const size = {
     mobileS: '320px',
     mobileM: '375px',
+    mobileLMin: '424px',
     mobileL: '425px',
+    tabletMin: '767px',
     tablet: '768px',
+    laptopMin: '1023px',
     laptop: '1024px',
     laptopM: '1366px',
     laptopL: '1920px',
@@ -40,10 +43,9 @@ const size = {
 }
 
 export const device = {
-    mobileS: `(min-width: ${size.mobileS})`,
-    mobileM: `(min-width: ${size.mobileM})`,
-    mobileL: `(min-width: ${size.mobileL})`,
-    tablet: `(min-width: ${size.tablet})`,
+    mobileS: `(min-width: ${size.mobileS}) and (max-width: ${size.mobileLMin})`,
+    mobileL: `(min-width: ${size.mobileL}) and (max-width: ${size.tabletMin})`,
+    tablet: `(min-width: ${size.tablet}) and (max-width: ${size.laptopMin})`,
     laptop: `(min-width: ${size.laptop})`,
     laptopM: `(min-width: ${size.laptopM})`,
     laptopL: `(min-width: ${size.laptopL})`,

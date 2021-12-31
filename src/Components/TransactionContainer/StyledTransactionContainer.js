@@ -14,6 +14,13 @@ export const TransactionHistoryContainer = styled.div`
     border: 2px solid #D9D9D9;
 
     margin-top: 20px;
+    margin-bottom: 2rem;
+
+    
+    @media ${device.mobileS}{
+        height: 30rem;
+        margin-bottom: 2rem;
+    }
 
     @media ${device.mobileL}{
         height: 30rem;
@@ -22,7 +29,7 @@ export const TransactionHistoryContainer = styled.div`
 
     @media ${device.tablet}{
         width: 80%;
-        height: 16rem;
+        height: 30rem;
     }
 
     @media ${device.laptop}{
@@ -48,7 +55,7 @@ export const TransactionHistoryContainer = styled.div`
     and (orientation: portrait) 
     and (-webkit-min-device-pixel-ratio: 1.5) 
     {
-       height: 30rem;
+       height: 32rem;
     }
 
     @media only screen 
@@ -69,8 +76,15 @@ export const Header = styled.div`
     padding: .625rem 1.25rem;
 
     border-radius: 8px 8px 0 0;
-
+    
     background-color: ${colors.primary_color};
+    z-index: 100;
+
+    @media ${device.mobileS}{
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem 1.25rem;
+    }
 
     @media ${device.mobileL}{
         flex-direction: column;
@@ -80,6 +94,17 @@ export const Header = styled.div`
 
     @media ${device.tablet}{
         padding: .575rem 1.25rem;
+        gap: 1rem;
+        flex-direction: column;
+    }
+
+    @media only screen 
+    and (min-width: 768px)
+    and (max-height: 1024px) 
+    and (orientation: portrait)
+    and (-webkit-min-device-pixel-ratio: 1.5) {
+        flex-direction: row;
+        padding: 1rem 1.25rem;
     }
 
     @media only screen 
@@ -148,6 +173,11 @@ export const ButtonNewTransaction = styled.button`
 
     &:active{
         filter: opacity(1) saturate(2);
+    }
+
+    @media ${device.mobileS}{
+        padding: 8px;
+        font-size: 1rem;
     }
 
     @media ${device.mobileL}{

@@ -64,6 +64,10 @@ const FitnessHeart = styled(Fitness)`
     color: #FFF;
     width: 2.6rem;
 
+    @media ${device.mobileL}{
+        width: 28px;
+    }
+
     @media ${device.desktop}{
         width: 4rem;
     }
@@ -72,6 +76,10 @@ const FitnessHeart = styled(Fitness)`
 const CarIcon = styled(Car)`
     color: #FFF;
     width: 2.3rem;
+
+    @media ${device.mobileL}{
+        width: 28px;
+    }
 
     @media ${device.desktop}{
         width: 4rem;
@@ -82,6 +90,10 @@ const CartIcon = styled(Cart)`
     color: #FFF;
     width: 2.5rem;
 
+    @media ${device.mobileL}{
+        width: 28px;
+    }
+
     @media ${device.desktop}{
         width: 4rem;
     }
@@ -90,6 +102,10 @@ const CartIcon = styled(Cart)`
 const FoodIcon = styled(Food)`
     color: #FFF;
     width: 2.5rem;
+    
+    @media ${device.mobileL}{
+        width: 28px;
+    }
 
     @media ${device.desktop}{
         width: 4rem;
@@ -100,6 +116,10 @@ const GameControllerIcon = styled(GameController)`
     color: #FFF;
     width: 2.5rem;
 
+    @media ${device.mobileL}{
+        width: 28px;
+    }
+
     @media ${device.desktop}{
         width: 4rem;
     }
@@ -108,6 +128,11 @@ const GameControllerIcon = styled(GameController)`
 const AttachMoneyIcon = styled(AttachMoney)`
     color: #FFF;
     width: 2.5rem;
+
+    @media ${device.mobileL}{
+        width: 28px;
+        margin-left: 2px;
+    }
 
     @media ${device.desktop}{
         width: 4rem;
