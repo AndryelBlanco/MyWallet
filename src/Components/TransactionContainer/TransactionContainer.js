@@ -1,5 +1,5 @@
 import React from 'react';
-import { FirebaseContext } from '../../Contexts/FirebaseContext';
+import { FirebaseContext } from '../../Contexts/FIrebaseContext';
 import TransactionItem from '../TransactionItem/TransactionItem';
 import { ButtonNewTransaction, Header, Text, TransactionHistoryContainer, TransactionsList } from './StyledTransactionContainer';
 

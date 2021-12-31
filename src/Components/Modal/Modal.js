@@ -1,5 +1,5 @@
 import React from 'react';
-import { FirebaseContext } from '../../Contexts/FirebaseContext';
+import { FirebaseContext } from '../../Contexts/FIrebaseContext';
 import { TypeArray } from '../../Helper/TransactionType';
 import { ModalBackdrop, ModalItem, ModalTitle, ModalInput, ButtonsContainer, CancelButton, ConfirmButton, ModalForm, ErrorMessage, ModalSelect } from './StyledForm';
 

@@ -28,10 +28,46 @@ export const Card = styled.div`
         background-position: 100% 10%;
     }
 
+    @media ${device.mobileL}{
+        min-width: 100%;
+        /* height: 100%; */
+        justify-content: center;
+        align-items: center;
+    }
+
+    @media ${device.tablet}{
+        width: 30%;
+        min-width: 348px;
+    }
+
+    @media only screen 
+    and (min-width: 1024px) 
+    and (max-height: 1366px) 
+    and (orientation: portrait) 
+    and (-webkit-min-device-pixel-ratio: 1.5) 
+    {   
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    @media only screen 
+    and (min-width: 768px)
+    and (max-height: 1024px) 
+    and (orientation: portrait)
+    and (-webkit-min-device-pixel-ratio: 1.5) {
+        width: 80%;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
     @media ${device.laptop}{
         padding: 1rem;
         min-width: 380px;
         width: 80%;
+        height: 10rem;
+        justify-content: center;
     }
 
     @media ${device.laptopM}{
@@ -47,22 +83,43 @@ export const Card = styled.div`
         height: 100%;
     }
 
-    @media only screen 
-    and (min-width: 1024px) 
-    and (max-height: 1366px) 
-    and (orientation: portrait) 
-    and (-webkit-min-device-pixel-ratio: 1.5) 
-    {   
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-    }
+   
 `;
 
 export const CardTitle = styled.span`
     font-size: 1.5rem;
     font-weight: 400;
     color: ${colors.primary_text_color};
+
+    @media ${device.mobileL}{
+        font-size: 1.1rem;
+        font-weight: 400;
+    }
+
+    @media ${device.tablet}{
+        font-size: 1.2rem;
+        font-weight: 400;
+    }
+
+    @media only screen 
+    and (min-width: 1024px) 
+    and (max-height: 1366px) 
+    and (orientation: portrait) 
+    and (-webkit-min-device-pixel-ratio: 1.5) 
+    {   
+        font-size: 1.6rem;
+        font-weight: 600;
+    }
+
+    @media only screen 
+    and (min-width: 768px)
+    and (max-height: 1024px) 
+    and (orientation: portrait)
+    and (-webkit-min-device-pixel-ratio: 1.5) {
+        width: 300px;
+        font-size: 1.4rem;
+        font-weight: 600;
+    }
 
     @media ${device.laptopL}{
         font-size: 1.6rem;
@@ -74,15 +131,6 @@ export const CardTitle = styled.span`
         font-weight: 500;
     }
 
-    @media only screen 
-    and (min-width: 1024px) 
-    and (max-height: 1366px) 
-    and (orientation: portrait) 
-    and (-webkit-min-device-pixel-ratio: 1.5) 
-    {   
-        font-size: 1.6rem;
-        font-weight: 700;
-    }
 `;
 
 export const CardData = styled.span`
@@ -96,13 +144,16 @@ export const CardData = styled.span`
     overflow: hidden;
     white-space: nowrap;
 
-
-    @media ${device.laptopL}{
-        font-size: 4rem;
+    @media ${device.mobileL}{
+        /* align-self: center; */
+        text-align: center;
+        width: 100%;
+        margin-left: 0rem;
     }
 
-    @media ${device.desktop}{
-        font-size: 8rem;
+    @media ${device.tablet}{
+        font-size: 2.6rem;
+        font-weight: 600;
     }
 
     @media only screen 
@@ -113,6 +164,23 @@ export const CardData = styled.span`
     {   
         width: 60%;
     }
+
+    @media only screen 
+    and (min-width: 768px)
+    and (max-height: 1024px) 
+    and (orientation: portrait)
+    and (-webkit-min-device-pixel-ratio: 1.5) {
+        width: 70%;
+    }
+
+    @media ${device.laptopL}{
+        font-size: 4rem;
+    }
+
+    @media ${device.desktop}{
+        font-size: 8rem;
+    }
+
 `;
 
 export const StrongText = styled.span`
@@ -133,22 +201,17 @@ export const CardAlt = styled.div`
     padding: 0 1.2rem;
     border-radius: 12px;
     user-select: none;
+    transition: .3s ease;
 
-    @media ${device.laptop}{
-        padding: 0rem 1rem;
-        width: 100%;
-        gap: 4px;
-    }
-
-    @media ${device.laptopM}{
-        padding: 1rem;
+     @media ${device.mobileL}{
+        flex-direction: row;
+        align-items: center;
         height: 5rem;
+        gap: .5rem;
     }
 
-    @media ${device.laptopL}{
-        /* justify-content: start; */
-        padding: 1rem 1rem;
-        height: 46%;
+    @media ${device.tablet}{
+        width: 100%;
     }
 
     @media only screen 
@@ -164,12 +227,50 @@ export const CardAlt = styled.div`
         width: 39%;
         /* min-height: 110px; */
     }
+
+    @media only screen 
+    and (min-width: 768px)
+    and (max-height: 1024px) 
+    and (orientation: portrait)
+    and (-webkit-min-device-pixel-ratio: 1.5) {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 1rem;
+        width: 39%;
+    }
+
+    @media ${device.laptop}{
+        padding: 1rem;
+
+        width: 100%;
+        height: 4.475rem;
+    }
+
+    @media ${device.laptopM}{
+        padding: 1rem;
+        height: 5rem;
+    }
+
+    @media ${device.laptopL}{
+        /* justify-content: start; */
+        padding: 1rem 1rem;
+        height: 46%;
+    }
+
 `;
 
 export const CardAltTitle = styled.span`
     font-size: 1rem;
     font-weight: 500;
     color: ${colors.primary_text_color};
+
+    @media ${device.mobileL}{
+        font-size: 1.1rem;
+        width: 5rem;
+        /* width: 100%; */
+        /* text-align: center; */
+    }
 
     @media ${device.laptop}{
         font-size: 1rem;
@@ -205,6 +306,10 @@ export const CardAltData = styled.span`
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
+
+    @media ${device.mobileL}{
+        font-size: 1.6rem;
+    }
 
     @media ${device.laptop}{
         font-size: 1.1rem;

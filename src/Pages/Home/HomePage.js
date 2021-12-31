@@ -1,5 +1,5 @@
 import React from 'react';
-import { FirebaseContext } from '../../Contexts/FirebaseContext';
+import { FirebaseContext } from '../../Contexts/FIrebaseContext';
 import { AuthContext } from '../../Contexts/AuthContext';
 import { Navigate } from 'react-router'
 

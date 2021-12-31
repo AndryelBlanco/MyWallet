@@ -15,6 +15,43 @@ export const Container = styled.div`
     margin-bottom: 1rem;
     border-radius: 10px;
 
+    transition: .3s ease;
+    
+    @media ${device.mobileL}{
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        height: 60%;
+    }
+
+    @media ${device.tablet}{
+        height: 38%;
+    }
+
+    @media only screen 
+    and (min-width: 1024px) 
+    and (max-height: 1366px) 
+    and (orientation: portrait) 
+    and (-webkit-min-device-pixel-ratio: 1.5) 
+    {
+        height: 35%;
+        /* min-height: 110px; */
+    }
+
+    @media only screen 
+    and (min-width: 768px)
+    and (max-height: 1024px) 
+    and (orientation: portrait)
+    and (-webkit-min-device-pixel-ratio: 1.5) {
+        height: 30%;
+
+    }
+
+    @media ${device.laptop}{
+        height: 30%;
+    }
+
     @media ${device.laptopM}{
         height: 30%;
     }
@@ -29,15 +66,7 @@ export const Container = styled.div`
         min-height: 110px;
     }
 
-    @media only screen 
-    and (min-width: 1024px) 
-    and (max-height: 1366px) 
-    and (orientation: portrait) 
-    and (-webkit-min-device-pixel-ratio: 1.5) 
-    {
-        height: 35%;
-        /* min-height: 110px; */
-    }
+   
 `;
 
 export const DataContainer = styled.div`
@@ -46,7 +75,12 @@ export const DataContainer = styled.div`
     justify-content: space-between;
 
     width: 100%;
-
+    
+    @media ${device.mobileL}{
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0 1px;
+    }
 `
 
 export const TransactionInfos = styled.div`
@@ -58,6 +92,9 @@ export const TransactionInfos = styled.div`
 
     padding: 1rem;
     
+    @media ${device.mobileL}{
+        width: 100%;    
+    }
 `;
 
 export const InfoContainer = styled.div`
@@ -77,6 +114,22 @@ export const ItemTitle = styled.h1`
     text-overflow: ellipsis;
     overflow: hidden;
 
+    @media ${device.mobileL}{
+        width: 200px;
+    }
+
+    @media ${device.tablet}{
+        width: 200px;
+    }
+
+    @media only screen 
+    and (min-width: 768px)
+    and (max-height: 1024px) 
+    and (orientation: portrait)
+    and (-webkit-min-device-pixel-ratio: 1.5) {
+        width: 200px;
+    }
+
     @media ${device.laptop}{
         font-size: 1rem;
     }
@@ -92,6 +145,7 @@ export const ItemTitle = styled.h1`
     @media ${device.desktop}{
         font-size: 2rem;
     }
+
 `;
 
 export const ItemDate = styled.span`
@@ -103,6 +157,14 @@ export const ItemDate = styled.span`
     overflow: hidden;
 
     text-align: center;
+
+    @media only screen 
+    and (min-width: 768px)
+    and (max-height: 1024px) 
+    and (orientation: portrait)
+    and (-webkit-min-device-pixel-ratio: 1.5) {
+        font-size: 1rem;
+    }
 
     @media ${device.laptopL}{
         font-size: 1rem;
@@ -120,6 +182,15 @@ export const ItemAmmount = styled.span`
 
     text-align: right;
 
+    @media ${device.mobileL}{
+        width: 100%;
+        text-align: center;
+        padding: 8px;
+        background-color: #f7f7f7;
+        border-top: 1px solid #e8e8e8;
+        border-bottom: 1px solid #e8e8e8;
+    }
+
     @media ${device.desktop}{
         font-size: 2rem;
     }
@@ -135,6 +206,13 @@ export const ButtonsContainer = styled.div`
     
     margin-right: 1rem;
     padding: 0rem 1rem;
+
+    @media ${device.mobileL}{
+        width: 100%;
+        margin-right: 0rem;
+        margin-bottom: 16px;
+        padding: 0 8px;
+    }
 `;
 
 export const EditButton = styled.div`
@@ -206,9 +284,14 @@ export const DeleteButton = styled.div`
 `;
 
 export const Divider = styled.hr`
+    display: flex;
     width: 1px;
     height: 3rem;
     background-color: #FAFAFA;
+
+    @media ${device.mobileL}{
+       display: none;
+    }
 
     @media ${device.laptop}{
         height: 2.5rem;

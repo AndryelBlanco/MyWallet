@@ -1,6 +1,6 @@
 import React from 'react';
 import { ButtonsContainer, Container, DataContainer, DeleteButton, Divider, EditButton, InfoContainer, ItemAmmount, ItemDate, ItemTitle, TransactionInfos } from './StyledTransactionItem';
-import { FirebaseContext } from '../../Contexts/FirebaseContext';
+import { FirebaseContext } from '../../Contexts/FIrebaseContext';
 import { ImPencil } from "react-icons/im";
 import { IoCloseCircle } from "react-icons/io5";
 import TypeIcons from '../TypeIcon/TypeIcons';

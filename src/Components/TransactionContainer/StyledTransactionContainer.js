@@ -15,8 +15,18 @@ export const TransactionHistoryContainer = styled.div`
 
     margin-top: 20px;
 
+    @media ${device.mobileL}{
+        height: 30rem;
+        margin-bottom: 2rem;
+    }
+
+    @media ${device.tablet}{
+        width: 80%;
+        height: 16rem;
+    }
+
     @media ${device.laptop}{
-        height: 18rem;
+        height: 22rem;
     }
 
     @media ${device.laptopM}{
@@ -40,6 +50,14 @@ export const TransactionHistoryContainer = styled.div`
     {
        height: 30rem;
     }
+
+    @media only screen 
+    and (min-width: 768px)
+    and (max-height: 1024px) 
+    and (orientation: portrait)
+    and (-webkit-min-device-pixel-ratio: 1.5) {
+        height: 30rem;
+    }
 `;
 
 export const Header = styled.div`
@@ -53,13 +71,15 @@ export const Header = styled.div`
     border-radius: 8px 8px 0 0;
 
     background-color: ${colors.primary_color};
-    
-    @media ${device.laptop}{
-        padding: 8px 1.25rem;
+
+    @media ${device.mobileL}{
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem 1.25rem;
     }
 
-    @media ${device.laptopL}{
-        padding: 1rem 1.25rem;
+    @media ${device.tablet}{
+        padding: .575rem 1.25rem;
     }
 
     @media only screen 
@@ -70,12 +90,25 @@ export const Header = styled.div`
     {
         padding: 1rem 1.25rem;
     }
+    
+    @media ${device.laptop}{
+        padding: 8px 1.25rem;
+    }
+
+    @media ${device.laptopL}{
+        padding: 1rem 1.25rem;
+    }
+
 `;
 
 export const Text = styled.h3`
     font-size: 1.1rem;
     font-weight: 700;
     color: ${colors.white_color};
+
+    @media ${device.mobileL}{
+        font-size: 1.2rem;
+    }
 
     @media ${device.laptopL}{
         font-size: 1.5rem;
@@ -115,6 +148,12 @@ export const ButtonNewTransaction = styled.button`
 
     &:active{
         filter: opacity(1) saturate(2);
+    }
+
+    @media ${device.mobileL}{
+        /* height: 30rem; */
+        padding: 8px;
+        font-size: 1rem;
     }
 
     @media ${device.laptop}{

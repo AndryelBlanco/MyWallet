@@ -4,7 +4,7 @@ import App from './App';
 import AuthContextProvider from './Contexts/AuthContext';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import './global.css';
-import { FirebaseProvider } from './Contexts/FirebaseContext';
+import { FirebaseProvider } from './Contexts/FIrebaseContext';
 
 ReactDOM.render(
   <React.StrictMode>

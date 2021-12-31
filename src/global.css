@@ -4,6 +4,7 @@
     padding: 0;
     box-sizing: border-box;
     scroll-behavior: smooth;
+    /* overflow-x: hidden; */
 }
 
 @keyframes fadeIn {
@@ -53,6 +54,7 @@
 
 ::-webkit-scrollbar {
     width: 6px;
+    height: 0;
 }
   
   /* Track */

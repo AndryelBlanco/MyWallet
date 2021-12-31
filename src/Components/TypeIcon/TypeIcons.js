@@ -2,10 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { styleIcons } from '../../Helper/StyleSheet';
-import { GiForkKnifeSpoon } from "react-icons/gi";
-import { IoGameControllerSharp, IoCart } from "react-icons/io5";
-import { MdAttachMoney } from "react-icons/md";
-import { colors, device } from "../../Helper/StyleSheet";
+import { device } from "../../Helper/StyleSheet";
 import { FitnessCenter } from '@styled-icons/material-rounded/FitnessCenter'
 import { Fitness } from '@styled-icons/ionicons-solid/Fitness'
 import { Car } from '@styled-icons/fa-solid/Car'
@@ -23,6 +20,11 @@ const IconContainer = styled.div`
     min-width: 45px;
     min-height: 45px;
     border-radius: 4px;
+
+    @media ${device.mobileL}{
+        min-width: 35px;
+        min-height: 35px;
+    }
 
     @media ${device.laptop}{
         min-width: 38px;
@@ -48,6 +50,10 @@ const IconContainer = styled.div`
 const FitnessIcon = styled(FitnessCenter)`
     color: #FFF;
     width: 2.6rem;
+
+    @media ${device.mobileL}{
+        width: 28px;
+    }
 
     @media ${device.desktop}{
         width: 4rem;
