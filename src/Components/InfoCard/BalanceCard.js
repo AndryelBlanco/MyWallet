@@ -6,18 +6,19 @@ const InfoCard = ({title, type}) => {
     const { oldValues } = React.useContext(FirebaseContext);
 
     const [balance, setBalance] = React.useState(0);
+    let formated = 0;
 
     React.useEffect(() =>{
-        setBalance(oldValues.oldCashIn + oldValues.oldCashOut);
+        setBalance((oldValues.oldCashIn + oldValues.oldCashOut).toLocaleString('pt-br', {minimumFractionDigits: 2}));
     }, [oldValues])
 
-    
+   
 
 
     return (
         <Card title={title}>
             <CardTitle title={title}>{title}</CardTitle>
-            <CardData ammount={balance.toFixed(2)} title={title}><StrongText>$</StrongText> {balance.toFixed(2)}</CardData>
+            <CardData ammount={balance} title={title}><StrongText>$</StrongText> {balance}</CardData>
         </Card>
     )
 }

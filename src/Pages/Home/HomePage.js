@@ -3,10 +3,8 @@ import { FirebaseContext } from '../../Contexts/FIrebaseContext';
 import { AuthContext } from '../../Contexts/AuthContext';
 import { Navigate } from 'react-router'
 
-import { CardsContainer, MainContainer, PageHome, SecondaryCardsContainer, } from './StyledHomePage';
+import { CardsContainer, MainContainer, PageHome, SecondaryCardsContainer, Footer} from './StyledHomePage';
 
-
-import TransactionItem from '../../Components/TransactionItem/TransactionItem'; 
 import Modal from '../../Components/Modal/Modal';
 import BalanceCard from '../../Components/InfoCard/BalanceCard';
 import LoadingItem from '../../Components/LoadingItem/LoadingItem';
@@ -23,13 +21,6 @@ const HomePage = () => {
     const [isModalVisible, setIsModalVisible] = React.useState(false); 
     const [sidebarVisible, setSidebarVisible] = React.useState(false);
 
-    // React.useEffect(() => {
-    //     window.addEventListener('resize', () => {
-    //       const myWidth  = window.innerWidth;
-    //       console.log("TESTE", myWidth);
-    //    })
-    //   },[window])
-
     React.useEffect(() => {
         if(oldValues !== null) setHasOldValues(true);
     }, [oldValues])
@@ -41,10 +32,10 @@ const HomePage = () => {
     if(user !== null){
         return (
             <PageHome>
+                <SidebarElement />
                 {isModalVisible ? <Modal type={'New Transaction'} onClickFunction={() => setIsModalVisible(!isModalVisible)}/> : null}
                 {isDeleteModalVisible ? <DeleteModal index={objEdit.index} title={objEdit.title} onClickFunction={() => setIsDeleteModalVisible(false)}/> : null}
                 {isEditModalVisible ? <Modal type={'Edit Transaction'} index={objEdit.index} oldTitle={objEdit.title} oldAmmount={objEdit.ammount}  onClickFunction={() => setIsEditModalVisible(!isEditModalVisible)}/> : null}
-                <SidebarElement />
                 <MainContainer>
                     {oldValues !== null ?
                         <CardsContainer>
@@ -52,15 +43,18 @@ const HomePage = () => {
                                 title='Balance available'
                             />
                             <SecondaryCardsContainer>
-                                <DetailsCard type='expense' title='Expenses' ammount={oldValues.oldCashOut.toFixed(2)} />
-                                <DetailsCard type='income' title='Incomes' ammount={oldValues.oldCashIn .toFixed(2)} />
+                                <DetailsCard type='expense' title='Expenses' ammount={oldValues.oldCashOut.toLocaleString('pt-br', {minimumFractionDigits: 2})} />
+                                <DetailsCard type='income' title='Incomes' ammount={oldValues.oldCashIn.toLocaleString('pt-br', {minimumFractionDigits: 2})} />
                             </SecondaryCardsContainer>
                         </CardsContainer>
                     : <LoadingItem color={"#FFF"} />}
                 <TransactionContainer isModalVisible={isModalVisible} setIsModalVisible={setIsModalVisible}>
-                    
                 </TransactionContainer>
+                
                 </MainContainer>
+                <Footer>
+                    <span>My Wallet - 2021</span>
+                </Footer>
             </PageHome>
         )
     }else{

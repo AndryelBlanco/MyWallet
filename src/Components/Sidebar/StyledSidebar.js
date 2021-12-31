@@ -14,7 +14,7 @@ export const Sidebar = styled.aside`
     position: relative;
     padding: .75rem;
     background: ${colors.primary_color};
-    z-index: 999;
+    z-index: 2;
 
     @media only screen 
     and (min-width: 1024px) 

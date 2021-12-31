@@ -1,5 +1,8 @@
+import React from 'react';
 import styled from 'styled-components';
-import { colors } from '../../Helper/StyleSheet';
+import { colors, device } from '../../Helper/StyleSheet';
+
+const tamanho = (window.outerHeight * 1.5)
 
 export const ModalBackdrop = styled.div`
     display: flex;
@@ -7,11 +10,29 @@ export const ModalBackdrop = styled.div`
     justify-content: center;
     
     width: 100%;
-    height: 100vh;
+    height: 100vh;    
     position: absolute;
     z-index: 100;
 
     background-color: rgba(0, 0, 0, .7);
+
+    @media ${device.mobileS} {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        padding-top: 5rem;
+        background-color: rgba(0, 0, 0, .7);
+        height: ${tamanho}px;
+    }
+
+    @media ${device.tablet} {
+        display: flex ;
+        align-items: flex-start;
+        justify-content: center;
+        padding-top: 10rem;
+        background-color: rgba(0, 0, 0, .7);
+        height: ${tamanho}px;
+    }
 `;
 
 export const ModalItem = styled.div`
@@ -24,7 +45,12 @@ export const ModalItem = styled.div`
     padding: 1rem;
     border-radius: 8px;
     
-    transition: 1s ease-in-out;
+    transition: .5s ease-in-out;
+
+    @media ${device.mobileS} {
+        width: 20rem;
+
+    }
 `;
 
 export const ModalForm = styled.form`

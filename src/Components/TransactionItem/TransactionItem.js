@@ -36,7 +36,7 @@ const TransactionItem = (props) => {
                         <ItemDate>{props.date}</ItemDate>
                     </InfoContainer>
                 </TransactionInfos>
-                <ItemAmmount ammount={props.ammount}>$ {props.ammount}</ItemAmmount>
+                <ItemAmmount ammount={props.ammount}>$ {props.ammount.toLocaleString('pt-br', {minimumFractionDigits: 2})}</ItemAmmount>
             </DataContainer>
                 <ButtonsContainer>
                 <Divider/>

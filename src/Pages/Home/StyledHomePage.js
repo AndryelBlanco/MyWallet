@@ -6,10 +6,9 @@ export const PageHome = styled.div`
     flex-direction: row;
 
     width: 100%;
-    /* height: 100vh; */
+    height: fit-content;
 
     background-color: #FDFDFD;
-
 `;
 
 export const MainContainer = styled.main`
@@ -218,7 +217,37 @@ export const SecondaryCardsContainer = styled.div`
         height: 100%;
         justify-content: center;
     }
+`;
 
+export const Footer = styled.footer`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-end !important;
+    justify-self: end;
+    position: absolute;
+
+    font-size: 1rem;
+    font-weight: 600;
+    color: #FFF;
+
+    width: 100%;
+    height: 50px;
+    z-index: 3;
+    padding: 0rem 0 0 10vw;
+    background-color: ${colors.primary_color};
+
+    @media ${device.mobileS}{
+        padding: 0 0 0 0;
+    }
+
+    @media ${device.mobileL}{
+        padding: 0 0 0 0;
+    }
+
+    @media ${device.tablet}{
+        padding: 0 0 0 0;
+    }
 
 `;
 

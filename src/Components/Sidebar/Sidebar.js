@@ -50,8 +50,6 @@ const SidebarElement = () => {
                     </SidebarButton>
                 </SidebarButtonsContainer>
                 <SidebarFooter>
-                    <LogoApp src={Logo} alt='Application logo'/>
-                    <FooterText>v1.0</FooterText>
                 </SidebarFooter>
             </Sidebar>
         )

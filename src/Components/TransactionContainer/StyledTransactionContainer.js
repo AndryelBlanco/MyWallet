@@ -20,16 +20,19 @@ export const TransactionHistoryContainer = styled.div`
     @media ${device.mobileS}{
         height: 30rem;
         margin-bottom: 2rem;
+        margin-bottom: 20%;
     }
 
     @media ${device.mobileL}{
         height: 30rem;
         margin-bottom: 2rem;
+        margin-bottom: 20%;
     }
 
     @media ${device.tablet}{
         width: 80%;
         height: 30rem;
+        margin-bottom: 10%;
     }
 
     @media ${device.laptop}{
@@ -56,6 +59,7 @@ export const TransactionHistoryContainer = styled.div`
     and (-webkit-min-device-pixel-ratio: 1.5) 
     {
        height: 32rem;
+       margin-bottom: 10%;
     }
 
     @media only screen 
@@ -64,6 +68,7 @@ export const TransactionHistoryContainer = styled.div`
     and (orientation: portrait)
     and (-webkit-min-device-pixel-ratio: 1.5) {
         height: 30rem;
+        margin-bottom: 10%;
     }
 `;
 
@@ -78,7 +83,6 @@ export const Header = styled.div`
     border-radius: 8px 8px 0 0;
     
     background-color: ${colors.primary_color};
-    z-index: 100;
 
     @media ${device.mobileS}{
         flex-direction: column;

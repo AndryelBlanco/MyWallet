@@ -171,10 +171,10 @@ const Modal = (props) => {
 
     if(props.type === 'New Transaction'){
         return (
-            <ModalBackdrop>
+            <ModalBackdrop >
                 <ModalItem className='fadeInAnimation'>
                     <ModalForm onSubmit={handleSubmit} id='form'>
-                        <ModalTitle>New Transaction</ModalTitle>
+                        <ModalTitle>New Transaction </ModalTitle>
                         <ModalInput
                             type='text'
                             value={transactionTitle}
