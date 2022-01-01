@@ -14,7 +14,8 @@ export const colors = {
 
     primary_text_color: '#FFF',
     secondary_text_color: '#F0F0F0',
-    terciary_text_color: '#021014'
+    terciary_text_color: '#021014',
+    google_button: '#FF5B5B'
 }
 
 export const styleIcons = {

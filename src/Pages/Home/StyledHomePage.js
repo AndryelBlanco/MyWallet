@@ -249,5 +249,9 @@ export const Footer = styled.footer`
         padding: 0 0 0 0;
     }
 
+    @media ${device.laptop}{
+        padding: 0rem 0 0 10vw;
+        height: 30px;
+    }
 `;
 

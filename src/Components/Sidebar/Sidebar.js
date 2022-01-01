@@ -14,6 +14,7 @@ const SidebarElement = () => {
     const [ isActive, setIsActive ] = React.useState('Home');
     
     function handleLogout() {
+        setIsActive('Logout');
         setIsClicked(false);
         logout();
     }
@@ -42,7 +43,10 @@ const SidebarElement = () => {
                             Charts
                         </SidebarButtonText>
                     </SidebarButton>
-                    <SidebarButton active={ isActive === 'Logout' ? true : false} onClick={() => setIsActive('Logout')}>
+                    <SidebarButton active={ isActive === 'Logout' ? true : false}
+                        onClick={() => {
+                            handleLogout()
+                        }}>
                         <LogOutI/>
                         <SidebarButtonText>
                             Logout
