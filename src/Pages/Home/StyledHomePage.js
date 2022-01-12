@@ -9,7 +9,10 @@ export const PageHome = styled.div`
     height: fit-content;
 
     background-color: #FDFDFD;
+
+   
 `;
+
 
 export const MainContainer = styled.main`
 
@@ -255,3 +258,52 @@ export const Footer = styled.footer`
     }
 `;
 
+//HAMBURGER MENU
+
+export const OpenedMenu = styled.div`
+    display: flex;
+    flex-direction: column;
+
+    width: 50%;
+    height: 100vh;
+
+    background: ${colors.primary_color};
+    position: absolute;
+    top: 0%;
+`;
+
+export const MenuContainer = styled.div`
+    display: flex;
+    align-items: flex-end;
+    justify-content: end;
+
+    width: 100%;
+    height: 65px;
+    
+    padding: ${props => props.hamburgerMenuVisible ? "0rem 0rem" : "1rem 5rem"};
+    position: relative;
+`;
+
+export const Menu = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+
+    width: 300px;
+    /* height: 300px; */
+
+    cursor: pointer;
+
+    &:hover{
+        filter: opacity(.6);
+    }
+`;
+
+export const HamburgerMenu = styled.span`
+    align-self: flex-end;
+    
+    width: 50px;
+    height: 5px;
+    background: ${colors.secondary_blue_color};
+    border-radius: 6px;
+`;

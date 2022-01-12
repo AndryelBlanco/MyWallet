@@ -2,8 +2,7 @@ import React from 'react';
 import { FirebaseContext } from '../../Contexts/FIrebaseContext';
 import { AuthContext } from '../../Contexts/AuthContext';
 import { Navigate } from 'react-router'
-
-import { CardsContainer, MainContainer, PageHome, SecondaryCardsContainer, Footer} from './StyledHomePage';
+import { CardsContainer, MainContainer, PageHome, SecondaryCardsContainer, Footer, MenuContainer, HamburgerMenu, Menu, OpenedMenu } from './StyledHomePage';
 
 import Modal from '../../Components/Modal/Modal';
 import BalanceCard from '../../Components/InfoCard/BalanceCard';
@@ -20,6 +19,7 @@ const HomePage = () => {
     const [hasOldValue, setHasOldValues] = React.useState(false);
     const [isModalVisible, setIsModalVisible] = React.useState(false); 
     const [sidebarVisible, setSidebarVisible] = React.useState(false);
+    const [hamburgerMenuVisible, setHamburgerMenuVisible] = React.useState(false);
 
     React.useEffect(() => {
         if(oldValues !== null) setHasOldValues(true);
@@ -37,6 +37,22 @@ const HomePage = () => {
                 {isDeleteModalVisible ? <DeleteModal index={objEdit.index} title={objEdit.title} onClickFunction={() => setIsDeleteModalVisible(false)}/> : null}
                 {isEditModalVisible ? <Modal type={'Edit Transaction'} index={objEdit.index} oldTitle={objEdit.title} oldAmmount={objEdit.ammount}  onClickFunction={() => setIsEditModalVisible(!isEditModalVisible)}/> : null}
                 <MainContainer>
+                    <MenuContainer hamburgerMenuVisible={hamburgerMenuVisible}>
+                        {/* <MenuMobile /> */}
+                        {hamburgerMenuVisible ?
+                             <OpenedMenu hamburgerMenuVisibl={hamburgerMenuVisible} onClick={ () => setHamburgerMenuVisible(false)} className='fadeInAnimationRight'>
+                                 <h1>This is a test</h1>
+                                 <h1>This is a test</h1>
+                                 <h1>This is a test</h1>
+                             </OpenedMenu>
+                             :
+                            <Menu onClick={ () => setHamburgerMenuVisible(true)} hamburgerMenuVisible={hamburgerMenuVisible}>
+                                <HamburgerMenu></HamburgerMenu>
+                                <HamburgerMenu></HamburgerMenu>
+                                <HamburgerMenu></HamburgerMenu>
+                            </Menu>
+                        }
+                    </MenuContainer>
                     {oldValues !== null ?
                         <CardsContainer>
                             <BalanceCard 
