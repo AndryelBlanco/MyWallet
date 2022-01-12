@@ -2,7 +2,8 @@ import React from 'react';
 import { FirebaseContext } from '../../Contexts/FIrebaseContext';
 import { AuthContext } from '../../Contexts/AuthContext';
 import { Navigate } from 'react-router'
-import { CardsContainer, MainContainer, PageHome, SecondaryCardsContainer, Footer, MenuContainer, HamburgerMenu, Menu, OpenedMenu } from './StyledHomePage';
+import { CardsContainer, MainContainer, PageHome, SecondaryCardsContainer, Footer, MenuContainer, HamburgerMenu, Menu, OpenedMenu, MenuItem, MenuButtonText, MenuItemContainer, UserNameText, UserPhoto, UserContainer } from './StyledHomePage';
+import { ChartsI, HomeI, LogOutI } from './StyledMenuIcons';
 
 import Modal from '../../Components/Modal/Modal';
 import BalanceCard from '../../Components/InfoCard/BalanceCard';
@@ -41,9 +42,33 @@ const HomePage = () => {
                         {/* <MenuMobile /> */}
                         {hamburgerMenuVisible ?
                              <OpenedMenu hamburgerMenuVisibl={hamburgerMenuVisible} onClick={ () => setHamburgerMenuVisible(false)} className='fadeInAnimationRight'>
-                                 <h1>This is a test</h1>
-                                 <h1>This is a test</h1>
-                                 <h1>This is a test</h1>
+                                 <UserContainer>
+                                    <UserPhoto
+                                        src={user.photoURL}
+                                        alt='User photo' 
+                                    />
+                                    <UserNameText>{user.displayName}</UserNameText>
+                                </UserContainer>
+                                    <MenuItemContainer>
+                                        <MenuItem>
+                                            <HomeI />
+                                            <MenuButtonText>
+                                                Home
+                                            </MenuButtonText>
+                                        </MenuItem>
+                                        <MenuItem disabled>
+                                            <ChartsI />
+                                            <MenuButtonText>
+                                                Charts
+                                            </MenuButtonText>
+                                        </MenuItem>
+                                        <MenuItem>
+                                            <LogOutI />
+                                            <MenuButtonText>
+                                                Logout
+                                            </MenuButtonText>
+                                        </MenuItem>
+                                    </MenuItemContainer>
                              </OpenedMenu>
                              :
                             <Menu onClick={ () => setHamburgerMenuVisible(true)} hamburgerMenuVisible={hamburgerMenuVisible}>
