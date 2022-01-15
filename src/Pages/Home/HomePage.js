@@ -2,7 +2,7 @@ import React from 'react';
 import { FirebaseContext } from '../../Contexts/FIrebaseContext';
 import { AuthContext } from '../../Contexts/AuthContext';
 import { Navigate } from 'react-router'
-import { CardsContainer, MainContainer, PageHome, SecondaryCardsContainer, Footer, MenuContainer, HamburgerMenu, Menu, OpenedMenu, MenuItem, MenuButtonText, MenuItemContainer, UserNameText, UserPhoto, UserContainer } from './StyledHomePage';
+import { CardsContainer, MainContainer, PageHome, SecondaryCardsContainer, Footer, MenuContainer, HamburgerMenu, Menu, OpenedMenu, MenuItem, MenuButtonText, MenuItemContainer, UserNameText, UserPhoto, UserContainer, CloseButton, Xbutton } from './StyledHomePage';
 import { ChartsI, HomeI, LogOutI } from './StyledMenuIcons';
 
 import Modal from '../../Components/Modal/Modal';
@@ -21,6 +21,9 @@ const HomePage = () => {
     const [isModalVisible, setIsModalVisible] = React.useState(false); 
     const [sidebarVisible, setSidebarVisible] = React.useState(false);
     const [hamburgerMenuVisible, setHamburgerMenuVisible] = React.useState(false);
+    const [ isActive, setIsActive ] = React.useState('Home');
+    const [ isClicked, setIsClicked ] = React.useState(false);
+
 
     React.useEffect(() => {
         if(oldValues !== null) setHasOldValues(true);
@@ -29,6 +32,12 @@ const HomePage = () => {
     React.useEffect(() => {
         if(user === null) return <Navigate to='/login'/>
     }, [user])
+
+    function handleLogout() {
+        setIsActive('Logout');
+        setIsClicked(false);
+        logout();
+    }
 
     if(user !== null){
         return (
@@ -41,8 +50,13 @@ const HomePage = () => {
                     <MenuContainer hamburgerMenuVisible={hamburgerMenuVisible}>
                         {/* <MenuMobile /> */}
                         {hamburgerMenuVisible ?
-                             <OpenedMenu hamburgerMenuVisibl={hamburgerMenuVisible} onClick={ () => setHamburgerMenuVisible(false)} className='fadeInAnimationRight'>
-                                 <UserContainer>
+                             <OpenedMenu hamburgerMenuVisibl={hamburgerMenuVisible}  className='fadeInAnimationRight'>
+                                <CloseButton>
+                                    <Xbutton onClick={ () => setHamburgerMenuVisible(false)}>
+                                        X 
+                                    </Xbutton>
+                                </CloseButton>
+                                <UserContainer>
                                     <UserPhoto
                                         src={user.photoURL}
                                         alt='User photo' 
@@ -50,7 +64,7 @@ const HomePage = () => {
                                     <UserNameText>{user.displayName}</UserNameText>
                                 </UserContainer>
                                     <MenuItemContainer>
-                                        <MenuItem>
+                                        <MenuItem  onClick={() => setIsActive('Home')}>
                                             <HomeI />
                                             <MenuButtonText>
                                                 Home
@@ -62,7 +76,10 @@ const HomePage = () => {
                                                 Charts
                                             </MenuButtonText>
                                         </MenuItem>
-                                        <MenuItem>
+                                        <MenuItem 
+                                            onClick={() => {
+                                            handleLogout()
+                                        }}>    
                                             <LogOutI />
                                             <MenuButtonText>
                                                 Logout

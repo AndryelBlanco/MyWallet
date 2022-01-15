@@ -266,7 +266,7 @@ export const OpenedMenu = styled.div`
     justify-content: start;
     gap: 1rem;
 
-    width: 40%;
+    width:50%;
     height: 100vh;
 
     background: ${colors.secondary_blue_color};
@@ -276,6 +276,7 @@ export const OpenedMenu = styled.div`
 
     @media ${device.mobileS}{
         display: flex;
+        width: 300px
     }
 
     @media ${device.mobileL}{
@@ -304,14 +305,17 @@ export const MenuContainer = styled.div`
 
     @media ${device.mobileS}{
         display: flex;
+        padding: ${props => props.hamburgerMenuVisible ? "0rem 0rem" : "1rem 2rem"};
     }
 
     @media ${device.mobileL}{
         display: flex;
+        padding: ${props => props.hamburgerMenuVisible ? "0rem 0rem" : "1rem 4rem"};
     }
 
     @media ${device.tablet}{
         display: flex;
+        padding: ${props => props.hamburgerMenuVisible ? "0rem 0rem" : "1rem 6rem"};
     }
 
     @media ${device.laptop}{
@@ -396,10 +400,10 @@ export const MenuItem = styled.div`
     height: 3rem;
     
     padding: 0rem 1rem;
-    border:2px solid transparent;
+    border:${props => props.active ? `${colors.terciary_blue_color}` : `2px solid transparent`};
     border-radius: 4px;
     /* padding: .375rem; */
-    background-color: ${props => props.active ? `${colors.terciary_blue_color}` : `${colors.primary_color}`};;
+    background-color: ${props => props.active ? `${colors.terciary_blue_color}` : `${colors.primary_color}`};
     
     cursor: ${props => !props.disabled ? "pointer" : "not-allowed"};
     filter: ${props => !props.disabled ? "opacity(1)" : "opacity(.4)"};
@@ -510,5 +514,26 @@ export const UserNameText = styled.h2`
 
     @media ${device.desktop}{
         font-size: 2.2rem;
+    }
+`;
+
+export const CloseButton = styled.div`
+    display: flex;
+    align-items: flex-end;
+    justify-content: end;
+
+    width: 100%;
+    padding: 0 1rem;
+`;
+
+export const Xbutton = styled.span`
+    color: ${colors.red_color};
+    font-weight: 800;
+    font-size: 1.1rem;
+    
+    cursor: pointer;
+
+    &:hover{
+        filter: opacity(.8);
     }
 `;
