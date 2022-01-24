@@ -1,6 +1,7 @@
 {
   "short_name": "My Wallet",
   "name": "My Wallet, a finances app",
+  "description": "A simple finance app to help you control your finances",
   "icons": [
     {
       "src": "favicon.png",
@@ -19,7 +20,7 @@
     }
   ],
   "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
+  "display": "fullscreen",
+  "theme_color": "#0066FF",
   "background_color": "#ffffff"
 }

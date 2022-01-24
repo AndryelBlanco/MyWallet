@@ -3,7 +3,7 @@ import { getAuth, GoogleAuthProvider, GithubAuthProvider  } from "firebase/auth"
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyACjZQAKEy_HbUKMuZhiJPorQfqv5eNeRg",
+  apiKey: process.env.FIREBASE_APP_API_KEY,
   authDomain: "my-wallet00.firebaseapp.com",
   projectId: "my-wallet00",
   storageBucket: "my-wallet00.appspot.com",
