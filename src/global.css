@@ -49,9 +49,8 @@
 }
 
 .fadeContainerButton{
-    opacity: 1;
-    transform: translateX(+14rem);
-    animation: containerMove .8s forwards;
+    opacity: 0;
+    animation: containerMove .5s forwards;
 }
 
 .fadeButton{

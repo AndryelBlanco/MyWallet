@@ -50,7 +50,7 @@ const HomePage = () => {
                     <MenuContainer hamburgerMenuVisible={hamburgerMenuVisible}>
                         {/* <MenuMobile /> */}
                         {hamburgerMenuVisible ?
-                             <OpenedMenu hamburgerMenuVisibl={hamburgerMenuVisible}  className='fadeInAnimationRight'>
+                             <OpenedMenu hamburgerMenuVisibl={hamburgerMenuVisible}  className='fadeContainerButton'>
                                 <CloseButton>
                                     <Xbutton onClick={ () => setHamburgerMenuVisible(false)}>
                                         X 

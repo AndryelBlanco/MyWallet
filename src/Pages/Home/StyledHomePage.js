@@ -357,10 +357,11 @@ export const Menu = styled.div`
 export const HamburgerMenu = styled.span`
     align-self: flex-end;
     
-    width: 50px;
-    height: 5px;
+    width: 35px;
+    height: 4px;
     background: ${colors.secondary_blue_color};
-    border-radius: 6px;
+    border-radius: 8px;
+    margin-right: 12px;
 
     @media ${device.mobileS}{
         display: flex;
@@ -526,10 +527,21 @@ export const CloseButton = styled.div`
     padding: 0 1rem;
 `;
 
-export const Xbutton = styled.span`
-    color: ${colors.red_color};
+export const Xbutton = styled.button`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 35px;
+    height: 35px;
+
+    background-color: ${colors.red_color};
+    border: none;
+    border-radius: 999px;
+
+    color: #FFF;
     font-weight: 800;
-    font-size: 1.1rem;
+    font-size: 1.4rem;
     
     cursor: pointer;
 
