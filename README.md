@@ -1,8 +1,7 @@
 
 ## ![Logo](./LogoReadme.png)
 
-![Gif](http://i.imgur.com/9dKYlaCh.gif)
-
+![Gif](https://media.giphy.com/media/J3s3xnMDE8QmKEOEwH/giphy-downsized-large.gif)
 
 ### Go to site ➡️: [My Wallet](https://my-wallet-pink.vercel.app/login)
 
