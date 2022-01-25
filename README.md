@@ -1,6 +1,9 @@
 
 ## ![Logo](./LogoReadme.png)
 
+![Gif](http://i.imgur.com/9dKYlaCh.gif)
+
+
 ### Go to site ➡️: [My Wallet](https://my-wallet-pink.vercel.app/login)
 
 ## Description 
@@ -21,6 +24,9 @@ The My Wallet application seeks to help those people who need to control their s
 **Proto:** Figma.
 
 **Storage:** Firebase. 
+
+## Structure Model
+ ![Logo](./codeStruct.png)
 
 ## Color Reference
 
