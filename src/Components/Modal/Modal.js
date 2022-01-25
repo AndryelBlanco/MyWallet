@@ -1,7 +1,7 @@
 import React from 'react';
 import { FirebaseContext } from '../../Contexts/FIrebaseContext';
 import { TypeArray } from '../../Helper/TransactionType';
-import { ModalBackdrop, ModalItem, ModalTitle, ModalInput, ButtonsContainer, CancelButton, ConfirmButton, ModalForm, ErrorMessage, ModalSelect } from './StyledForm';
+import { ModalBackdrop, ModalItem, ModalTitle, ModalInput, ButtonsContainer, CancelButton, ConfirmButton, ModalForm, ErrorMessage, ModalSelect, AuxMessage } from './StyledForm';
 
 const Modal = (props) => {
 
@@ -18,6 +18,7 @@ const Modal = (props) => {
     const [valuesToEdit, setValuesToEdit] = React.useState(null);
 
     const [isValid, setIsValid] = React.useState(true);
+    const [isFocused, setIsFocused] = React.useState(false);
 
     React.useEffect(() => {
         if(objEdit !== null){
@@ -179,18 +180,21 @@ const Modal = (props) => {
                             type='text'
                             value={transactionTitle}
                             onChange={handleChange}
-                            placeholder='title'
+                            placeholder='Transaction Title'
                             id='title'
                             isValid={true}
                             maxLength={26}
                         />
+                        {isFocused ? <AuxMessage>Use hyphen for negative values</AuxMessage> : null}
                         <ModalInput
-                           value={transactionAmmount}
-                           onChange={handleChange}
-                           placeholder='ammount'
-                           id='ammount'
-                           type='number'
-                           isValid={true}
+                            value={transactionAmmount}
+                            onChange={handleChange}
+                            placeholder='Total Ammount'
+                            id='ammount'
+                            type='number'
+                            isValid={true}
+                            onFocus={() => setIsFocused(true)}
+                            onBlur={() => setIsFocused(false)}
                         />
                         <ModalInput
                             type='date'

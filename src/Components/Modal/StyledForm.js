@@ -178,3 +178,9 @@ export const ErrorMessage = styled.span`
     color: ${colors.red_color};
     margin-top: -6%;
 `;
+
+export const AuxMessage = styled.span`
+    font-size: 0.725rem;
+    color: orange;
+    margin-bottom: -8%;
+`;
