@@ -205,7 +205,7 @@ const Modal = (props) => {
                             id='date'
                             isValid={isValid}
                         />
-                        {!isValid ? <ErrorMessage>Selecione uma data válida</ErrorMessage> : null}
+                        {!isValid ? <ErrorMessage>Please select a valid date</ErrorMessage> : null}
                         <ModalSelect
                             value={transactionType}
                             onChange={handleChange}
@@ -256,7 +256,7 @@ const Modal = (props) => {
                             id='date'
                             isValid={isValid}
                         />
-                        {!isValid ? <ErrorMessage>Selecione uma data válida</ErrorMessage> : null}
+                        {!isValid ? <ErrorMessage>Please select a valid date</ErrorMessage> : null}
                         <ModalSelect
                             value={typeToEdit}
                             onChange={handleEdit}
